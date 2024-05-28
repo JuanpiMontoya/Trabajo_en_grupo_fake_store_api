@@ -9,7 +9,6 @@ header{
 }
 
 h1 {
-  margin-left: 5%; 
   font-size: 48px;
 } 
 
@@ -20,6 +19,13 @@ h5{
 p{
   font-size: 14px;
 }
+
+a{
+  color: white;
+  text-decoration: none;
+  padding-left: 7%;
+}
+
 .nav {
   background-color: #1c1c1c;
   display: flex;
@@ -34,9 +40,7 @@ p{
   padding: 0 5%;
 }
 
-a {
-  color: white;
-  text-decoration: none;
+.nav a {
   padding: 2% 7%;
   font-size: 25px;
   transition: color 0.3s ease;  
