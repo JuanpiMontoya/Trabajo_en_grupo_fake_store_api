@@ -1,0 +1,76 @@
+header {
+    .about-container {
+      padding: 20px;
+  
+      section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 40px;
+  
+        h2 {
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+  
+        p {
+          font-size: 16px;
+          margin-bottom: 20px;
+        }
+  
+        .texto {
+          flex: 1;
+          padding-right: 20px; /* Ajuste de espaciado entre texto e imagen */
+        }
+  
+        .contenedor-imagen {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0 20px;
+        }
+  
+        img {
+          max-width: 100%; /* Hacer que la imagen sea responsiva */
+          height: auto;
+          max-height: 300px; /* Limitar la altura máxima de la imagen */
+          border-radius: 8px; /* Opcional: añadir bordes redondeados */
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Opcional: añadir sombra */
+        }
+      }
+  
+      .mission {
+        .texto {
+          order: 1;
+          text-align: left;
+        }
+        .contenedor-imagen {
+          order: 2;
+        }
+      }
+  
+      .team {
+        flex-direction: row-reverse; /* Invertir la dirección del flex */
+        .texto {
+          order: 2;
+          text-align: right;
+        }
+        .contenedor-imagen {
+          order: 1;
+        }
+      }
+  
+      .history {
+        .texto {
+          order: 1;
+          text-align: left;
+        }
+        .contenedor-imagen {
+          order: 2;
+        }
+      }
+    }
+  }
+  
+  
