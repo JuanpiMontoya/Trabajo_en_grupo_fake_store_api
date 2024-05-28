@@ -76,12 +76,11 @@
       <h5>Cosas Sobre Nosotros</h5>
       <section>
           <nav>
-              <ul id="menu-3">
-                <li><a [routerLink]="['nosotros']">Ejemplo 1</a></li>
-                <li><a [routerLink]="['nosotros']">Ejemplo 2</a></li>
-                <li><a [routerLink]="['nosotros']">Ejemplo 3</a></li>
-                <li><a [routerLink]="['nosotros']">Ejemplo 4</a></li>
-              </ul>
+            <ul id="menu-3">
+              <li><a [routerLink]="['/nosotros']" fragment="mission">Nuestra Misión</a></li>
+              <li><a [routerLink]="['/nosotros']" fragment="team">Conozca Nuestro Equipo</a></li>
+              <li><a [routerLink]="['/nosotros']" fragment="history">Nuestra Historia</a></li>
+            </ul>
           </nav>
       </section>
     </div>
