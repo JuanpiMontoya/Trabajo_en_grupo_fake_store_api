@@ -1,1 +1,66 @@
-<p>inicio works!</p>
+<div class="presentation-container">
+    <h1>Encuentra el artículo perfecto para cada ocasión en <span class="last-word">nuestra tienda</span></h1>
+    <p>Seleccionamos los mejores productos para ti. ¡Explora nuestra colección ahora!</p>
+    <div class="presentation-buttons">
+        <button class="color-button"><a [routerLink]="'/tienda'" [routerLinkActive]="['active']">Ir a la tienda</a></button>
+        <button><a [routerLink]="'/nosotros'" [routerLinkActive]="['active']">Sobre Nosotros</a></button>
+    </div>
+</div>
+<div class="advantages-container">
+    <p>¡Bienvenido a nuestro espacio en línea, encontrarás una amplia gama de productos diseñados para satisfacer tus necesidades cotidianas con estilo y funcionalidad. Nos enorgullece ofrecer una experiencia de compra que combina calidad, variedad y conveniencia para ti.</p>
+    <div class="advantages">
+        <div class="options">
+            <h2>Ventajas de nuestra tienda</h2>
+            <p>Descubre las ventajas de comprar con nosotros:</p>
+            <div class="advantage" id="first-advantage" (click)="handleClick($event, '../../../assets/media/productos.png')">
+                <div>
+                    <h3>Variedad de Productos</h3>
+                    <p>Desde artículos esenciales hasta tecnología de última generación, tenemos todo lo que necesitas en un solo lugar.</p>
+                </div>
+                <div class="icon-container">
+                    <img src="../../../assets/media/productos.svg" alt="Icono Productos">
+                </div>
+            </div>
+            <div class="advantage" id="second-advantage" (click)="handleClick($event, '../../../assets/media/envio.png')">
+                <div>
+                    <h3>Envío Rápido y Seguro</h3>
+                    <p>Ofrecemos un envio rápido y confiable para que tus productos lleguen a tu puerta en poco tiempo, sin preocupaciones.</p>
+                </div>
+                <div class="icon-container">
+                    <img src="../../../assets/media/envio.svg" alt="Icono Envio">
+                </div>
+            </div>
+            <div class="advantage" id="third-advantage" (click)="handleClick($event, '../../../assets/media/compra.png')">
+                <div>
+                    <h3>Facilidad de Compra</h3>
+                    <p>En nuestra tienda comprar es rápido y sencillo, permitiéndote encontrar lo que necesitas con facilidad y comodidad.</p>
+                </div>
+                <div class="icon-container">
+                    <img src="../../../assets/media/compra.svg" alt="Icono Compra">
+                </div>
+            </div>
+        </div>
+        <div class="img-advantage">
+            <img [src]="selectedImage" alt="Vista previa">
+        </div>
+    </div>
+</div>
+
+<div class="main-login-container">
+    <div class="login-container">
+        <div class="login-content">
+            <h3>¡Inicia Sesión y Comienza a Comprar!</h3>
+            <p>Accede a tu cuenta para disfrutar de una experiencia de compra personalizada y explorar nuestra amplia gama de productos exclusivos.</p>
+            <form class="login-form">
+                <div>
+                    <input type="email" placeholder="Ingresa tu email..." required>
+                    <input type="password" placeholder="Ingresa tu contraseña..." required>
+                </div>
+                <button type="submit">Inicia Sesion</button>
+            </form>
+        </div>
+    </div>
+    <div>
+        <img src="" alt="">
+    </div>
+</div>

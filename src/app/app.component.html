@@ -1,6 +1,8 @@
 <!-- seccion header -->
 <header>
-  <h1>Fake Store</h1>
+  <a [routerLink]="['inicio']" [routerLinkActive]="['active']">
+    <h1>Fake Store</h1>
+  </a>
   <div class="nav">
     <a [routerLink]="['inicio']" [routerLinkActive]="['active']">Inicio</a>
     <a [routerLink]="['tienda']" [routerLinkActive]="['active']">Tienda</a>
@@ -23,16 +25,12 @@
       </a>
     </div>
     <div class="logo-img">
-      <a href="https://github.com/JuanpiMontoya/Trabajo_en_grupo_fake_store_api">
+      <a href="https://github.com/JuanpiMontoya/Trabajo_en_grupo_fake_store_api" target="_blank">
         <img src="../assets/media/logo-GitHub.png" alt="logo GitHub">
       </a>
     </div>
   </div>
 </header>
-Ideas para el sitio
-<a href="https://react-shop-siza.vercel.app/products" target="_blank">Opcion 1</a>
-<a href="https://fake-store-shopping-app.netlify.app" target="_blank">Opcion 2</a>
-
 <!-- seccion contenido -->
 <router-outlet />
 
@@ -110,7 +108,7 @@ Ideas para el sitio
         <li><p>Juan Pablo Montoya Jimenez</p></li>
       </ul>
     </div>
-    <a href="https://github.com/JuanpiMontoya/Trabajo_en_grupo_fake_store_api">
+    <a href="https://github.com/JuanpiMontoya/Trabajo_en_grupo_fake_store_api" target="_blank">
       <img src="../assets/media/logo-GitHub.png" alt="logo GitHub">
     </a>
   </div>
