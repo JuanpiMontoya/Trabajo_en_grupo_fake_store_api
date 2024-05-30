@@ -1,0 +1,13 @@
+<div class="contenedor-detalle">
+    <div class="imagen">
+        <img src="{{product?.image}}" alt="">
+    </div>
+    <div class="descripcion">
+        <h2>{{product?.title}}</h2>
+        <p><s>Precio de venta recomendado: $200</s></p>
+        <p><strong>¡Ahora a la venta por solo ${{product?.price}}</strong></p>
+        <p><span>Calificación de nuestros consumidores: </span> <strong>{{product?.rating?.rate}}/5 <img src="../../../assets/media/—Pngtree—gold-star-like-metal.png" alt="" id="star-icon"></strong></p>
+        <p>{{product?.description}}</p>
+        <button>AÑADIR AL CARRITO</button>
+    </div>
+</div>

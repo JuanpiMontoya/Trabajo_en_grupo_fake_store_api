@@ -14,4 +14,13 @@ export class ProductService {
     const products = await resp.json();
     return products;
   }
+
+  async fetchProductById(id: number): Promise<Product> {
+    const resp = await fetch(`${this.apiurl}${id}`);
+    if (!resp.ok) {
+      throw new Error('Product not found');
+    }
+    const product = await resp.json();
+    return product;
+  }
 }
