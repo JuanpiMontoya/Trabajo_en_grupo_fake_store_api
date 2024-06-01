@@ -1,12 +1,11 @@
 .contenedor-productos{
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
     flex-wrap: wrap;
+    margin: 5% 0;
+    margin-left: 3%;
+    margin-right: 10%;
     div{
       flex-basis: 25%;
-      flex-grow: 1;
-      flex-shrink: 1;
+      margin: 1% 1.5%;
     }
-   }
-   
+}  

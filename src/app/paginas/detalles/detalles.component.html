@@ -1,13 +1,29 @@
-<div class="contenedor-detalle">
-    <div class="imagen">
-        <img src="{{product?.image}}" alt="">
-    </div>
-    <div class="descripcion">
-        <h2>{{product?.title}}</h2>
-        <p><s>Precio de venta recomendado: $200</s></p>
-        <p><strong>¡Ahora a la venta por solo ${{product?.price}}</strong></p>
-        <p><span>Calificación de nuestros consumidores: </span> <strong>{{product?.rating?.rate}}/5 <img src="../../../assets/media/—Pngtree—gold-star-like-metal.png" alt="" id="star-icon"></strong></p>
-        <p>{{product?.description}}</p>
-        <button>AÑADIR AL CARRITO</button>
-    </div>
-</div>
+<section class="detail">
+    <header class="header-detail">
+        <div class="go-back">
+            <a [routerLink]="'/tienda'" [routerLinkActive]="['active']">
+                <span style="color: white;">&lt;</span> Volver atrás
+            </a>
+        </div>
+    </header>
+    <div class="container-detail">
+        <div class="img">
+            <img src="{{product?.image}}" alt="">
+        </div>
+        <div class="description">
+            <h2>{{product?.title}}</h2>
+            <div class="category">
+                <p>{{product?.category}}</p>
+            </div>
+            <p><strong>{{product?.rating?.rate}}/5 <img src="../../../assets/media/—Pngtree—gold-star-like-metal.png" alt="Estrellas Producto" id="star-icon"></strong></p>
+            <p>{{product?.description}}</p>
+            <div class="bottom-detail">
+                <div class="price">
+                <p>Precio</p>
+                <span>$ {{product?.price}}</span>
+                </div>
+                <button>Añadir al carrito</button>
+            </div>
+        </div>
+    </div> 
+</section>
