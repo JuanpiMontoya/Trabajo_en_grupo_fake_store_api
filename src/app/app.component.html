@@ -3,33 +3,36 @@
   <a [routerLink]="['inicio']" [routerLinkActive]="['active']">
     <h1>Fake Store</h1>
   </a>
-  <div class="nav">
-    <a [routerLink]="['inicio']" [routerLinkActive]="['active']">Inicio</a>
-    <a [routerLink]="['tienda']" [routerLinkActive]="['active']">Tienda</a>
-    <a [routerLink]="['nosotros']" [routerLinkActive]="['active']">Nosotros</a>
+  <div class="links-container">
+    <div class="nav">
+      <a [routerLink]="['inicio']" [routerLinkActive]="['active']">Inicio</a>
+      <a [routerLink]="['tienda']" [routerLinkActive]="['active']">Tienda</a>
+      <a [routerLink]="['nosotros']" [routerLinkActive]="['active']">Nosotros</a>
+    </div>
+    <div class="logo-container">
+      <div class="logo-img">
+        <a href="mailto:wendy.balderrama@ucb.edu.bo">
+          <img src="../assets/media/logo-Wendy.png" alt="logo Wendy Balderrama">
+        </a>
+      </div>
+      <div class="logo-img">
+        <a href="mailto:luis.menacho@ucb.edu.bo">
+          <img src="../assets/media/logo-Luis.png" alt="logo Luis Menacho">
+        </a>
+      </div>
+      <div class="logo-img">
+        <a href="mailto:juan.montoya@ucb.edu.bo">
+          <img src="../assets/media/logo-Juanpi.png" alt="logo Juan Pablo Montoya">
+        </a>
+      </div>
+      <div class="logo-img">
+        <a href="https://github.com/JuanpiMontoya/Trabajo_en_grupo_fake_store_api" target="_blank">
+          <img src="../assets/media/logo-GitHub.png" alt="logo GitHub">
+        </a>
+      </div>
+    </div>
   </div>
-  <div class="logo-container">
-    <div class="logo-img">
-      <a href="mailto:wendy.balderrama@ucb.edu.bo">
-        <img src="../assets/media/logo-Wendy.png" alt="logo Wendy Balderrama">
-      </a>
-    </div>
-    <div class="logo-img">
-      <a href="mailto:luis.menacho@ucb.edu.bo">
-        <img src="../assets/media/logo-Luis.png" alt="logo Luis Menacho">
-      </a>
-    </div>
-    <div class="logo-img">
-      <a href="mailto:juan.montoya@ucb.edu.bo">
-        <img src="../assets/media/logo-Juanpi.png" alt="logo Juan Pablo Montoya">
-      </a>
-    </div>
-    <div class="logo-img">
-      <a href="https://github.com/JuanpiMontoya/Trabajo_en_grupo_fake_store_api" target="_blank">
-        <img src="../assets/media/logo-GitHub.png" alt="logo GitHub">
-      </a>
-    </div>
-  </div>
+  
 </header>
 <!-- seccion contenido -->
 <router-outlet />

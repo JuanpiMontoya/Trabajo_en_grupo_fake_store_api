@@ -3,9 +3,17 @@ header{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 5px;
   background: url('../assets/media/header-background.png') center;
   background-size: cover; 
   border-bottom: 1px solid  #343434;
+}
+
+.links-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70%;
 }
 
 h1 {
@@ -69,6 +77,8 @@ a{
   border-radius: 50%;
   margin-top: 10%;
 }
+
+
 
 /* Configuracion de footer*/
 
@@ -167,4 +177,116 @@ footer{
   width: 45px;
   height: 45px;
   border-radius: 50%;
+}
+
+
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 32px;
+    margin: 10px 0;
+  }
+
+  .links-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .nav {
+    flex-direction: row;
+    margin-left: 0;
+    padding: 0;
+    justify-content: space-around;
+  }
+
+  .nav a {
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .logo-container {
+    flex-direction: row;
+    margin-right: 0;
+    padding-top: 5%;
+  }
+
+  .logo-img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .logo-img img {
+    margin-top: 0;
+  }
+
+  footer {
+    padding: 0 5%;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .footer-section {
+    text-align: center;
+    padding: 5px;
+  }
+
+  .footer-section ul {
+    padding-left: 0;
+  }
+
+  .footer-section a {
+    font-size: 12px;
+  }
+
+  .footer-section h5 {
+    font-size: 12px;
+  }
+
+  .footer-section-4 {
+    max-width: 100%;
+  }
+
+  .email-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .email-input {
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  .submit-button {
+    padding: 5px;
+    font-size: 16px;
+    border-left: none;
+    border-top: 2px solid white;
+  }
+
+  .footer-copyright {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: 20px;
+  }
+
+  .footer-copyright ul {
+    margin: 10px 0 0 0;
+  }
+
+  .footer-copyright img {
+    width: 35px;
+    height: 35px;
+  }
 }
