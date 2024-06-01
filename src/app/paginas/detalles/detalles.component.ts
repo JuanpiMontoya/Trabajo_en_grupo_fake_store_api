@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../product.service';
 import { Product } from '../../interfaces/product';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-detalles',
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './detalles.component.html',
   styleUrl: './detalles.component.scss'
 })
