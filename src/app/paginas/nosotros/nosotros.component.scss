@@ -1,76 +1,160 @@
-header {
-    .about-container {
-      padding: 20px;
-  
-      section {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 40px;
-  
-        h2 {
-          font-size: 24px;
-          margin-bottom: 10px;
-        }
-  
-        p {
-          font-size: 16px;
-          margin-bottom: 20px;
-        }
-  
-        .texto {
-          flex: 1;
-          padding-right: 20px; /* Ajuste de espaciado entre texto e imagen */
-        }
-  
-        .contenedor-imagen {
-          flex: 1;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin: 0 20px;
-        }
-  
-        img {
-          max-width: 100%; /* Hacer que la imagen sea responsiva */
-          height: auto;
-          max-height: 300px; /* Limitar la altura máxima de la imagen */
-          border-radius: 8px; /* Opcional: añadir bordes redondeados */
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Opcional: añadir sombra */
-        }
-      }
-  
-      .mission {
-        .texto {
-          order: 1;
-          text-align: left;
-        }
-        .contenedor-imagen {
-          order: 2;
-        }
-      }
-  
-      .team {
-        flex-direction: row-reverse; /* Invertir la dirección del flex */
-        .texto {
-          order: 2;
-          text-align: right;
-        }
-        .contenedor-imagen {
-          order: 1;
-        }
-      }
-  
-      .history {
-        .texto {
-          order: 1;
-          text-align: left;
-        }
-        .contenedor-imagen {
-          order: 2;
-        }
-      }
-    }
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-navegacion: #6852f4;
+  --borde-caja: #e7ecee;
+  --fondo-elemento: #f5f5f5;
+  --color-texto-caja: rgb(31, 44, 51);
+}
+
+::selection {
+  background-color: var(--color-navegacion);
+  color: white;
+}
+
+header .about-container {
+  padding: 20px;
+}
+
+header .about-container section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+header .about-container section h6 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #4c7ec1;
+  display: block;
+  font-weight: bold;
+  unicode-bidi: isolate;
+}
+
+header .about-container section p {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #999999;
+  padding: 0px 50px;
+  font-optical-sizing: auto;
+}
+
+header .about-container .texto {
+  flex: 1;
+  padding-right: 20px; 
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+}
+
+header .about-container .contenedor-imagen {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+}
+
+header .about-container .contenedor-imagen img {
+  max-width: 100%;
+  height: auto;
+  max-height: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 0;
+}
+
+header .about-container .mission .texto {
+  order: 1;
+  text-align: left; 
+}
+
+header .about-container .mission .contenedor-imagen {
+  order: 2; 
+  width: 50%; 
+}
+
+header .about-container .team .texto {
+  order: 2; 
+  text-align: right; 
+}
+
+header .about-container .team .contenedor-imagen {
+  order: 1; 
+  width: 50%; 
+}
+
+header .about-container .history .texto {
+  order: 1; 
+  text-align: left; 
+}
+
+header .about-container .history .contenedor-imagen {
+  order: 2; 
+  width: 50%;
+}
+
+.elemento-sinfondo {
+  padding: 100px;
+  color: #ffffff;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  background-image: url('/assets/media/pexels-karolina-grabowska-4207904.jpg');
+}
+
+.elemento-sinfondo h2 {
+  font-size: 48px;
+  padding-bottom: 30px;
+}
+
+@media (max-width: 1000px) {
+  .elemento-sinfondo {
+    text-align: center;
   }
-  
-  
+}
+
+.fondo-blanco {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.elemento-contador-numeros {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.elemento-lista-ventas {
+  display: flex;
+  justify-content: space-around; 
+  align-items: center;
+  width: 80%; 
+}
+
+.lista-ventas {
+  margin: 0 10px;
+}
+
+.lista-ventas h4, .lista-ventas p {
+  margin: 5px 0;
+  margin-bottom: 40px;
+  font-size: 38px;
+}
+
