@@ -71,3 +71,31 @@ button {
   padding: 4% 10%; 
   font-size: 18px;
 }
+
+@media (max-width: 480px) {
+  .container-product{
+    margin-bottom: 5%;
+    padding: 5%; 
+    padding-bottom: 0%;
+    .container-img {
+      height:0%; 
+    }
+    img {
+      width: 100%;
+      height: auto;
+      margin: 0;
+    }
+  }
+
+  .bottom-product a {
+    margin-left: 4.5%;
+    margin-right: 0;
+  }
+
+  button {
+    margin-right: 0;
+    margin-left: 20%;
+    margin-bottom: 10%;
+    padding: 4% 10%; 
+  }
+}

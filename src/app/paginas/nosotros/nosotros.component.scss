@@ -22,43 +22,44 @@ body {
   color: white;
 }
 
-header .about-container {
+.about-container {
   padding: 20px;
 }
 
-header .about-container section {
+.about-container section {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 40px;
 }
 
-header .about-container section h6 {
+.about-container section h2 {
   font-size: 32px;
   margin-bottom: 10px;
   color: #4c7ec1;
   display: block;
   font-weight: bold;
   unicode-bidi: isolate;
+  padding-left: 25px;
 }
 
-header .about-container section p {
+.about-container section p {
   font-size: 20px;
   margin-bottom: 20px;
   color: #999999;
-  padding: 0px 50px;
+  padding-right: 50px;
+  padding-left: 25px;
   font-optical-sizing: auto;
 }
 
-header .about-container .texto {
-  flex: 1;
-  padding-right: 20px; 
+.about-container .texto {
+  flex: 1; 
   flex-direction: column;
   display: flex;
   align-items: flex-start;
 }
 
-header .about-container .contenedor-imagen {
+.about-container .contenedor-imagen {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -66,7 +67,7 @@ header .about-container .contenedor-imagen {
   margin: 0 20px;
 }
 
-header .about-container .contenedor-imagen img {
+.about-container .contenedor-imagen img {
   max-width: 100%;
   height: auto;
   max-height: 300px;
@@ -76,48 +77,55 @@ header .about-container .contenedor-imagen img {
   padding: 0;
 }
 
-header .about-container .mission .texto {
+.about-container .mission .texto {
   order: 1;
   text-align: left; 
 }
 
-header .about-container .mission .contenedor-imagen {
+.about-container .mission .contenedor-imagen {
   order: 2; 
   width: 50%; 
 }
 
-header .about-container .team .texto {
+.about-container .team .texto {
   order: 2; 
   text-align: right; 
 }
 
-header .about-container .team .contenedor-imagen {
+.about-container .team .contenedor-imagen {
   order: 1; 
   width: 50%; 
 }
 
-header .about-container .history .texto {
+.about-container .history .texto {
   order: 1; 
   text-align: left; 
 }
 
-header .about-container .history .contenedor-imagen {
+.about-container .history .contenedor-imagen {
   order: 2; 
   width: 50%;
 }
 
 .elemento-sinfondo {
   padding: 100px;
-  color: #ffffff;
   width: 70%;
   margin: 0 auto;
   text-align: center;
-  background-image: url('/assets/media/pexels-karolina-grabowska-4207904.jpg');
+  background-image: url('/assets/media/pexels-karolina-grabowska-4207904.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.elemento-sinfondo h2 {
+.about-container .elemento-sinfondo h2 {
+  color: white;
   font-size: 48px;
   padding-bottom: 30px;
+}
+
+.about-container .elemento-sinfondo p {
+  color: white;
 }
 
 @media (max-width: 1000px) {
@@ -158,3 +166,58 @@ header .about-container .history .contenedor-imagen {
   font-size: 38px;
 }
 
+@media (max-width: 480px) {
+
+  .about-container section {
+    flex-direction: column;
+  }
+
+  .elemento-lista-ventas {
+    flex-direction: column; 
+  }
+
+  .about-container section h2 {
+    padding-left: 50px;
+  }
+
+  .about-container .team .contenedor-imagen {
+    width: 100%; 
+  }
+  
+  .about-container .history .contenedor-imagen {
+    width: 100%;
+    
+  }
+
+  #mout {
+    margin-top: 10%;
+    margin-bottom: 5%;
+  }
+
+  .about-container section h2, .about-container section p {
+    padding-right: 3%;
+    padding-left: 7%;
+  }
+
+  .elemento-sinfondo{
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .fondo-blanco{
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .fondo-blanco h4{
+    margin-top: 40%;
+    margin-bottom: 0;
+  }
+
+  .about-container .elemento-sinfondo h2 {
+    margin: 10% 0;
+    font-size: 40px;
+    padding: 0;
+  }
+
+}
