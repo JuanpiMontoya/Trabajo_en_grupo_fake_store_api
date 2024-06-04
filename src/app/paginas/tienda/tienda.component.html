@@ -1,3 +1,22 @@
+<div class="buscador">
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Busca Productos</mat-label>
+      <input #input
+             type="text"
+             placeholder="Pick one"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async; trackBy: trackByOption" [value]="option">
+          {{ option.title }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
+
 <div class="contenedor-productos">
     @for ( producto of listaDeProductos; track producto.id){
       <div>
