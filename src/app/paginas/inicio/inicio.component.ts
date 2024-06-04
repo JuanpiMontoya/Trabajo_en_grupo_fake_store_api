@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { Router,RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -15,7 +15,7 @@ export class InicioComponent implements OnInit, AfterViewInit {
 
   selectedImage: string = '../../../assets/media/productos.png'; // Imagen seleccionada por defecto
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private elementRef: ElementRef) { }
 
   ngOnInit(): void {
 
@@ -26,6 +26,15 @@ export class InicioComponent implements OnInit, AfterViewInit {
     const firstAdvantage = document.getElementById('first-advantage');
     if (firstAdvantage) {
       firstAdvantage.classList.add('clicked');
+    }
+    const url = window.location.href;
+    const hashIndex = url.indexOf('#');
+    if (hashIndex !== -1) {
+      const id = url.substring(hashIndex + 1);
+      const element = this.elementRef.nativeElement.querySelector(`#${id}`);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   }
 
@@ -40,13 +49,15 @@ export class InicioComponent implements OnInit, AfterViewInit {
 
   handleLogin(event: Event): void {
     event.preventDefault();
-    const email = (document.getElementById('email') as HTMLInputElement).value;
-    const password = (document.getElementById('password') as HTMLInputElement).value;
+
+    const username = (document.getElementById('email') as HTMLInputElement).value;
+    const accessToken = (document.getElementById('password') as HTMLInputElement).value;
 
     // Simulación de autenticación exitosa
-    if (email && password) {
+    if (username && accessToken) {
       sessionStorage.setItem('loggedIn', 'true');
-      alert('Inicio de sesion exitoso');
+      alert(`Inicio de sesion exitoso, Bienvenido ${username}`);
+      localStorage.setItem(`user:${username}:accessToken`, accessToken);
       (document.getElementById('email') as HTMLInputElement).value = "";
       (document.getElementById('password') as HTMLInputElement).value = "";
       this.router.navigate(['/inicio']); 
