@@ -2,8 +2,8 @@
     <h1>Encuentra el artículo perfecto para cada ocasión en <span class="last-word">nuestra tienda</span></h1>
     <p>Seleccionamos los mejores productos para ti. ¡Explora nuestra colección ahora!</p>
     <div class="presentation-buttons">
-        <button class="color-button"><a [routerLink]="'/tienda'" [routerLinkActive]="['active']">Ir a la tienda</a></button>
-        <button><a [routerLink]="'/nosotros'" [routerLinkActive]="['active']">Sobre Nosotros</a></button>
+        <button mat-flat-button class="color-button"><a [routerLink]="'/tienda'" [routerLinkActive]="['active']">Ir a la tienda</a></button>
+        <button mat-flat-button><a [routerLink]="'/nosotros'" [routerLinkActive]="['active']">Sobre Nosotros</a></button>
     </div>
 </div>
 <div class="advantages-container">
@@ -45,22 +45,18 @@
         </div>
     </div>
 </div>
-
 <div class="main-login-container">
     <div class="login-container">
         <div class="login-content">
-            <h3>¡Inicia Sesión y Comienza a Comprar!</h3>
+            <h3>¡Ingresa tu email con tu contraseña y Comienza a Comprar!</h3>
             <p>Accede a tu cuenta para disfrutar de una experiencia de compra personalizada y explorar nuestra amplia gama de productos exclusivos.</p>
-            <form class="login-form">
+            <form class="login-form" (submit)="handleLogin($event)">
                 <div>
-                    <input type="email" placeholder="Ingresa tu email..." required>
-                    <input type="password" placeholder="Ingresa tu contraseña..." required>
+                    <input type="email" id="email" placeholder="Ingresa tu email..." required>
+                    <input type="password" id="password" placeholder="Ingresa tu contraseña..." required>
                 </div>
-                <button type="submit">Inicia Sesion</button>
+                <button mat-flat-button type="submit">Inicia Sesion</button>
             </form>
         </div>
-    </div>
-    <div>
-        <img src="" alt="">
     </div>
 </div>

@@ -4,6 +4,7 @@ import {ProductComponent} from "../../elementos/product/product.component";
 import { ProductService } from '../../product.service';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
  selector: 'app-tienda',
  standalone: true,

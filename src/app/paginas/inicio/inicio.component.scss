@@ -34,16 +34,17 @@ p{
 
 .presentation-buttons button {
     background-color: #343434;
-    border: none;
     padding: 1% 2%;
     margin: 0 1%;
     transition: background-color 0.3s, color 0.3s;
     font-size: 16px;
     border-radius: 10px;
 }
+
 .presentation-buttons button a{
     color: white;
     text-decoration: none;
+    
 }
 
 .presentation-buttons button:hover {
@@ -188,6 +189,7 @@ p{
     margin: auto 0;
     margin-left: 7.5%;
 }
+
 
 .login-form button:hover {
     background-color: #6a9ee2;
