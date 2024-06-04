@@ -1,9 +1,10 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule  } from '@angular/router';
 import { InicioComponent } from './paginas/inicio/inicio.component';
 import { TiendaComponent } from './paginas/tienda/tienda.component';
 import { NosotrosComponent } from './paginas/nosotros/nosotros.component';
 import { PaginaNoEncontradaComponent } from './paginas/pagina-no-encontrada/pagina-no-encontrada.component';
 import { DetallesComponent } from './paginas/detalles/detalles.component';
+import { NgModule } from '@angular/core';
 
 
 export const routes: Routes = [
@@ -14,3 +15,9 @@ export const routes: Routes = [
     { path: 'detalles/:id', component: DetallesComponent },
     { path: '**', component: PaginaNoEncontradaComponent }
 ];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+  export class AppRoutingModule { }

@@ -48,40 +48,25 @@
     </div>
     <!-- seccion 2-->
     <div class="footer-section footer-section-2">
-        <h5>Cosas Inicio</h5>
+        <h5>Inicio</h5>
         <section>
             <nav>
                 <ul id="menu-1">
-                    <li><a [routerLink]="['inicio']">Ejemplo 1</a></li>
-                    <li><a [routerLink]="['inicio']">Ejemplo 2</a></li>
-                    <li><a [routerLink]="['inicio']">Ejemplo 3</a></li>
-                    <li><a [routerLink]="['inicio']">Ejemplo 4</a></li>
+                    <li><a [routerLink]="['inicio']" fragment="presentation">Presentacion</a></li>
+                    <li><a [routerLink]="['inicio']" fragment="advantages">Ventajas</a></li>
+                    <li><a [routerLink]="['inicio']" fragment="login">¡Comienza a comprar!</a></li>
                 </ul>
             </nav>
         </section>
     </div>
     <!-- seccion 3-->
-    <div class="footer-section footer-section-3">
-      <h5>Cosas Tienda</h5>
-      <section>
-          <nav>
-              <ul id="menu-2">
-                <li><a [routerLink]="['tienda']">Ejemplo 1</a></li>
-                <li><a [routerLink]="['tienda']">Ejemplo 2</a></li>
-                <li><a [routerLink]="['tienda']">Ejemplo 3</a></li>
-                <li><a [routerLink]="['tienda']">Ejemplo 4</a></li>
-              </ul>
-          </nav>
-      </section>
-    </div>
-    <!-- seccion 4-->
     <div class="footer-section footer-section-4">
-      <h5>Cosas Sobre Nosotros</h5>
+      <h5>Nosotros</h5>
       <section>
           <nav>
             <ul id="menu-3">
-              <li><a [routerLink]="['/nosotros']" fragment="mission">Nuestra Misión</a></li>
-              <li><a [routerLink]="['/nosotros']" fragment="team">Conozca Nuestro Equipo</a></li>
+              <li><a [routerLink]="['/nosotros']" fragment="om">Nuestra Misión</a></li>
+              <li><a [routerLink]="['/nosotros']" fragment="mout">Conozca Nuestro Equipo</a></li>
               <li><a [routerLink]="['/nosotros']" fragment="history">Nuestra Historia</a></li>
             </ul>
           </nav>

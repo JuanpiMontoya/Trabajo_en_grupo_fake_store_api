@@ -97,12 +97,12 @@ body {
   width: 50%; 
 }
 
-.about-container .history .texto {
+.about-container #history .texto {
   order: 1; 
   text-align: left; 
 }
 
-.about-container .history .contenedor-imagen {
+.about-container #history .contenedor-imagen {
   order: 2; 
   width: 50%;
 }
@@ -184,7 +184,7 @@ body {
     width: 100%; 
   }
   
-  .about-container .history .contenedor-imagen {
+  .about-container #history .contenedor-imagen {
     width: 100%;
     
   }

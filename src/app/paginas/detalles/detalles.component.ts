@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { ProductService } from '../../product.service';
 import { Product } from '../../interfaces/product';
 import { Router, ActivatedRoute,RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
@@ -16,7 +16,7 @@ export class DetallesComponent implements OnInit {
   product: Product | undefined;
   loggedIn: boolean = false;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService,private router: Router){ }
+  constructor(private route: ActivatedRoute, private productService: ProductService,private router: Router,private elementRef: ElementRef){ }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
@@ -29,6 +29,23 @@ export class DetallesComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit(): void {
+    // Seleccionar el primer div por defecto
+    const firstAdvantage = document.getElementById('first-advantage');
+    if (firstAdvantage) {
+      firstAdvantage.classList.add('clicked');
+    }
+    const url = window.location.href;
+    const hashIndex = url.indexOf('#');
+    if (hashIndex !== -1) {
+      const id = url.substring(hashIndex + 1);
+      const element = this.elementRef.nativeElement.querySelector(`#${id}`);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
+  
   async cargarProducto(id: number) {
     try {
       this.product = await this.productService.fetchProductById(id);
@@ -46,7 +63,7 @@ export class DetallesComponent implements OnInit {
       }
       cart[productId]++;
       localStorage.setItem('cart', JSON.stringify(cart));
-      alert(`Producto registrado en el carrito. ID: ${productId}, Cantidad: ${cart[productId]}`);
+      alert(`Producto registrado en el carrito, Cantidad: ${cart[productId]}`);
     } else {
       alert('Por favor, inicia sesión para agregar productos al carrito.');
     }
