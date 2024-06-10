@@ -2,15 +2,16 @@ import { Component, OnInit, AfterViewInit, ElementRef} from '@angular/core';
 import {Product} from "../../interfaces/product";
 import {ProductComponent} from "../../elementos/product/product.component";
 import { ProductService } from '../../product.service';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AsyncPipe} from '@angular/common';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators'
-
+import { RouterLink } from '@angular/router';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 @Component({
@@ -21,24 +22,61 @@ import { map, startWith } from 'rxjs/operators'
   MatInputModule,
   MatAutocompleteModule,
   ReactiveFormsModule,
-  AsyncPipe],
+  MatSlideToggleModule,
+  AsyncPipe,
+  RouterLink,
+  MatChipsModule
+  ],
  providers: [ProductService],
  templateUrl: './tienda.component.html',
  styleUrl: './tienda.component.scss'
 })
 
 export class TiendaComponent implements OnInit, AfterViewInit{
+  mycontrol = new FormControl('');
+  productosFiltrados!: Observable<Product[]>;
+
   listaDeProductos: Product[] = []; //recuperado con fetch en el servicio de productos
-  constructor(private productService: ProductService,private elementRef: ElementRef){}
+  categorias: string[] = []; //lista de categorias
+  categoriaSeleccionada: string |  null = null;
+
+  constructor(private productService: ProductService,private elementRef: ElementRef){
+    this.productosFiltrados = this.mycontrol.valueChanges.pipe(
+      startWith(''),
+      map(prod => (prod ? this._filtrarProductos(prod) : this.listaDeProductos.slice())),
+    );
+  }
+
+  private _filtrarProductos(value: string): Product[] {
+    const filterValue = value.toLowerCase();
+
+    return this.listaDeProductos.filter(prod => prod.title.toLowerCase().includes(filterValue));
+  }
 
   ngOnInit(): void {
     this.cargarProductos();
-
-    
+    this.cargarCategorias();
   }
 
   async cargarProductos(){
     this.listaDeProductos = await this.productService.fetchProducts();
+  }
+
+  async cargarCategorias() {
+    this.categorias = await this.productService.fetchCategories();
+  }
+
+  async cargarProductosPorCategoria(category: string) {
+    if (this.categoriaSeleccionada === category) {
+      // Si se vuelve a clickear el chip de la categoria se vuelven a mostrar todos los productos
+      this.categoriaSeleccionada = null;
+      this.listaDeProductos = await this.productService.fetchProducts();
+    } else {
+      // funcionamiento normal: filtrar al elegir alguna categoría
+      this.categoriaSeleccionada = category;
+      this.listaDeProductos = await this.productService.fetchProductByCategory(category);
+    }
+    this.mycontrol.setValue(''); // Resetear el contenido de la barra de búsqueda cuando se elige una categoría
   }
 
   ngAfterViewInit(): void {
@@ -52,4 +90,5 @@ export class TiendaComponent implements OnInit, AfterViewInit{
       }
     }
   }
+
 }

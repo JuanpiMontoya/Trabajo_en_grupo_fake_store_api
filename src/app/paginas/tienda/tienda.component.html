@@ -1,21 +1,32 @@
-<div class="buscador">
+<div class="search-n-filter">
   <form class="example-form">
     <mat-form-field class="example-full-width">
-      <mat-label>Busca Productos</mat-label>
-      <input #input
-             type="text"
-             placeholder="Pick one"
-             matInput
-             [formControl]="myControl"
-             [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-        <mat-option *ngFor="let option of filteredOptions | async; trackBy: trackByOption" [value]="option">
-          {{ option.title }}
-        </mat-option>
+      <mat-label>Busca productos</mat-label>
+      <input matInput
+             aria-label="Buscar"
+             [matAutocomplete]="auto"
+             [formControl]="mycontrol">
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (prod of productosFiltrados | async; track prod) {
+          <a [routerLink]="['/detalles', prod.id]">
+            <mat-option [value]="prod.title">
+              <img alt="" class="example-option-img" [src]="prod.image" height="25">
+              <span>{{prod.title}}</span> |
+              <small>Price: {{prod.price}}</small>          
+            </mat-option>
+          </a>
+        }
       </mat-autocomplete>
     </mat-form-field>
   </form>
+  
+  <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Category selection">
+    @for (cat of categorias; track cat) {
+      <mat-chip-option [selected]="categoriaSeleccionada === cat" (click)="cargarProductosPorCategoria(cat)">{{cat}}</mat-chip-option>
+    }
+  </mat-chip-listbox>
 </div>
+
 
 <div class="contenedor-productos">
     @for ( producto of listaDeProductos; track producto.id){
