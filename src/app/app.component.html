@@ -1,13 +1,13 @@
 <!-- seccion header -->
 <header>
-  <a [routerLink]="['inicio']" [routerLinkActive]="['active']">
+  <a [routerLink]="['/inicio']" routerLinkActive="active">
     <h1>Fake Store</h1>
   </a>
   <div class="links-container">
     <div class="nav">
-      <a [routerLink]="['inicio']" [routerLinkActive]="['active']">Inicio</a>
-      <a [routerLink]="['tienda']" [routerLinkActive]="['active']">Tienda</a>
-      <a [routerLink]="['nosotros']" [routerLinkActive]="['active']">Nosotros</a>
+      <a [routerLink]="['/inicio']" routerLinkActive="active">Inicio</a>
+      <a [routerLink]="['/tienda']" routerLinkActive="active">Tienda</a>
+      <a [routerLink]="['/nosotros']" routerLinkActive="active">Nosotros</a>
     </div>
     <div class="logo-container">
       <div class="logo-img">
@@ -31,55 +31,57 @@
         </a>
       </div>
     </div>
+    <div class="auth-buttons">
+      <a [routerLink]="['/iniciar-sesion']" routerLinkActive="active" class="btn btn-primary">Iniciar Sesión</a>
+      <a [routerLink]="['/crear-cuenta']" routerLinkActive="active" class="btn btn-secondary">Crear una cuenta</a>
+    </div>
   </div>
-  
 </header>
 <!-- seccion contenido -->
-<router-outlet />
-
+<router-outlet></router-outlet>
 <!-- seccion footer -->
 <footer>
   <!-- div contenido footer -->
   <div class="footer-content">
     <!-- seccion 1 -->
     <div class="footer-section footer-section-1">
-            <a [routerLink]="['inicio']">Terminos y condiciones</a> - 
-            <a [routerLink]="['inicio']">Privacidad</a> 
+      <a [routerLink]="['/inicio']">Terminos y condiciones</a> - 
+      <a [routerLink]="['/inicio']">Privacidad</a> 
     </div>
     <!-- seccion 2-->
     <div class="footer-section footer-section-2">
-        <h5>Inicio</h5>
-        <section>
-            <nav>
-                <ul id="menu-1">
-                    <li><a [routerLink]="['inicio']" fragment="presentation">Presentacion</a></li>
-                    <li><a [routerLink]="['inicio']" fragment="advantages">Ventajas</a></li>
-                    <li><a [routerLink]="['inicio']" fragment="login">¡Comienza a comprar!</a></li>
-                </ul>
-            </nav>
-        </section>
+      <h5>Inicio</h5>
+      <section>
+        <nav>
+          <ul id="menu-1">
+            <li><a [routerLink]="['/inicio']" fragment="presentation">Presentacion</a></li>
+            <li><a [routerLink]="['/inicio']" fragment="advantages">Ventajas</a></li>
+            <li><a [routerLink]="['/inicio']" fragment="login">¡Comienza a comprar!</a></li>
+          </ul>
+        </nav>
+      </section>
     </div>
     <!-- seccion 3-->
     <div class="footer-section footer-section-4">
       <h5>Nosotros</h5>
       <section>
-          <nav>
-            <ul id="menu-3">
-              <li><a [routerLink]="['/nosotros']" fragment="om">Nuestra Misión</a></li>
-              <li><a [routerLink]="['/nosotros']" fragment="mout">Conozca Nuestro Equipo</a></li>
-              <li><a [routerLink]="['/nosotros']" fragment="history">Nuestra Historia</a></li>
-            </ul>
-          </nav>
+        <nav>
+          <ul id="menu-3">
+            <li><a [routerLink]="['/nosotros']" fragment="om">Nuestra Misión</a></li>
+            <li><a [routerLink]="['/nosotros']" fragment="mout">Conozca Nuestro Equipo</a></li>
+            <li><a [routerLink]="['/nosotros']" fragment="history">Nuestra Historia</a></li>
+          </ul>
+        </nav>
       </section>
     </div>
     <div class="footer-section footer-section-4">
       <h5>Contactanos</h5>
       <p>Reciba las últimas noticias y artículos en su bandeja de entrada todos los meses.</p>
       <section class="email-container">
-          <input type="email" placeholder="Tu email" class="email-input">
-          <button class="submit-button">
-            <span> → </span>
-          </button>
+        <input type="email" placeholder="Tu email" class="email-input">
+        <button class="submit-button">
+          <span> → </span>
+        </button>
       </section>
     </div>
   </div>
