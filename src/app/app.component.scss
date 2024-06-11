@@ -1,5 +1,5 @@
-/* Configuracion de header*/
-header{
+/* Configuracion de header */
+header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,7 +9,7 @@ header{
   border-bottom: 1px solid  #343434;
 }
 
-.links-container{
+.links-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -18,17 +18,17 @@ header{
 
 h1 {
   font-size: 48px;
-} 
+}
 
-h5{
+h5 {
   color: #4c7ec1;
 }
 
-p{
+p {
   font-size: 14px;
 }
 
-a{
+a {
   color: white;
   text-decoration: none;
   padding-left: 7%;
@@ -53,12 +53,12 @@ a{
   font-size: 25px;
   transition: color 0.3s ease;  
 }
-  
+
 .logo-container {
   display: flex;
   flex: 1;
   justify-content: flex-end;
-  margin-right: 15%;
+  margin-right: 5%;
 }
 
 .logo-img {
@@ -78,13 +78,37 @@ a{
   margin-top: 10%;
 }
 
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
 
-/* Configuracion de footer*/
+.btn-primary {
+  background-color: #007bff;
+}
 
-footer{
+.btn-secondary {
+  background-color: #6c757d;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+/* Configuracion de footer */
+footer {
   padding: 0 10%;
-  
 }
 
 .footer-content {
@@ -95,12 +119,11 @@ footer{
   gap: 7%;
 }
 
-.footer-section{
+.footer-section {
   padding: 10px;
 }
 
-
-.footer-section h5{
+.footer-section h5 {
   font-size: 14px;
 }
 
@@ -158,12 +181,12 @@ footer{
   justify-content: space-between;
 }
 
-.footer-copyright ul{
+.footer-copyright ul {
   padding: 0;
   margin-left: 5%;
 }
 
-.footer-copyright a{
+.footer-copyright a {
   font-size: 14px;
   padding: 0;
   color: #4c7ec1;
@@ -173,48 +196,88 @@ footer{
   text-decoration: underline;
 }
 
-.footer-copyright img{
+.footer-copyright img {
   width: 45px;
   height: 45px;
   border-radius: 50%;
 }
 
+@media (max-width: 1024px) {
+  .nav a {
+    padding: 1% 5%;
+    font-size: 20px;
+  }
 
-@media (max-width: 480px) {
+  .btn {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .logo-container {
+    margin-right: 2%;
+  }
+
+  .logo-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-img img {
+    width: 70%;
+    height: 70%;
+    margin-top: 15%;
+  }
+}
+
+@media (max-width: 768px) {
   header {
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
   }
 
-  h1 {
-    font-size: 32px;
-    margin: 10px 0;
-  }
-
-  .links-container{
-    display: flex;
+  .links-container {
     flex-direction: column;
-    justify-content: space-around;
     width: 100%;
   }
 
   .nav {
-    flex-direction: row;
+    flex-direction: column;
     margin-left: 0;
-    padding: 0;
-    justify-content: space-around;
+    padding: 10px 0;
   }
 
   .nav a {
     padding: 10px;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .logo-container {
     flex-direction: row;
     margin-right: 0;
-    padding-top: 5%;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 32px;
+    margin: 10px 0;
+  }
+
+  .nav a {
+    font-size: 16px;
   }
 
   .logo-img {
@@ -233,7 +296,6 @@ footer{
   .footer-content {
     display: block;
     align-items: center;
-
   }
 
   .footer-section {
