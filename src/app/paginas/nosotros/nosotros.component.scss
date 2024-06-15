@@ -1,26 +1,4 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --color-navegacion: #6852f4;
-  --borde-caja: #e7ecee;
-  --fondo-elemento: #f5f5f5;
-  --color-texto-caja: rgb(31, 44, 51);
-}
-
-::selection {
-  background-color: var(--color-navegacion);
-  color: white;
-}
+// sección header 
 
 .about-container {
   padding: 20px;
@@ -46,20 +24,19 @@ body {
 .about-container section p {
   font-size: 20px;
   margin-bottom: 20px;
-  color: #999999;
   padding-right: 50px;
   padding-left: 25px;
   font-optical-sizing: auto;
 }
 
-.about-container .texto {
+.about-container .text {
   flex: 1; 
   flex-direction: column;
   display: flex;
   align-items: flex-start;
 }
 
-.about-container .contenedor-imagen {
+.about-container .img-container {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -67,7 +44,7 @@ body {
   margin: 0 20px;
 }
 
-.about-container .contenedor-imagen img {
+.about-container .img-container img {
   max-width: 100%;
   height: auto;
   max-height: 300px;
@@ -77,64 +54,62 @@ body {
   padding: 0;
 }
 
-.about-container .mission .texto {
+.about-container .mission .text {
   order: 1;
   text-align: left; 
 }
 
-.about-container .mission .contenedor-imagen {
+.about-container .mission .img-container {
   order: 2; 
   width: 50%; 
 }
 
-.about-container .team .texto {
+// sección equipo
+
+.about-container .team .text {
   order: 2; 
   text-align: right; 
 }
 
-.about-container .team .contenedor-imagen {
+.about-container .team .img-container {
   order: 1; 
   width: 50%; 
 }
 
-.about-container #history .texto {
+// sección historia
+
+.about-container #history .text {
   order: 1; 
   text-align: left; 
 }
 
-.about-container #history .contenedor-imagen {
+.about-container #history .img-container {
   order: 2; 
   width: 50%;
 }
 
-.elemento-sinfondo {
+// sección con fondo
+
+.background-section {
   padding: 100px;
   width: 70%;
   margin: 0 auto;
   text-align: center;
-  background-image: url('/assets/media/pexels-karolina-grabowska-4207904.png');
+  background-image: url('/assets/media/nosotros/pexels-karolina-grabowska.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 
-.about-container .elemento-sinfondo h2 {
+.about-container .background-section h2 {
   color: white;
   font-size: 48px;
   padding-bottom: 30px;
 }
 
-.about-container .elemento-sinfondo p {
-  color: white;
-}
+// sección datos tienda
 
-@media (max-width: 1000px) {
-  .elemento-sinfondo {
-    text-align: center;
-  }
-}
-
-.fondo-blanco {
+.data-store {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,28 +117,32 @@ body {
   padding: 40px 0;
 }
 
-.elemento-contador-numeros {
+.numbers-element {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
 
-.elemento-lista-ventas {
+.list-data {
   display: flex;
   justify-content: space-around; 
   align-items: center;
   width: 80%; 
 }
 
-.lista-ventas {
+.info-store {
   margin: 0 10px;
 }
 
-.lista-ventas h4, .lista-ventas p {
+.info-store h4, .info-store p {
   margin: 5px 0;
   margin-bottom: 40px;
   font-size: 38px;
+}
+
+.list-data .info-store:nth-child(4) p {
+  padding: 0;
 }
 
 @media (max-width: 480px) {
@@ -172,26 +151,8 @@ body {
     flex-direction: column;
   }
 
-  .elemento-lista-ventas {
-    flex-direction: column; 
-  }
-
   .about-container section h2 {
     padding-left: 50px;
-  }
-
-  .about-container .team .contenedor-imagen {
-    width: 100%; 
-  }
-  
-  .about-container #history .contenedor-imagen {
-    width: 100%;
-    
-  }
-
-  #mout {
-    margin-top: 10%;
-    margin-bottom: 5%;
   }
 
   .about-container section h2, .about-container section p {
@@ -199,25 +160,44 @@ body {
     padding-left: 7%;
   }
 
-  .elemento-sinfondo{
+  // sección equipo e historia  
+
+  .about-container .team .img-container, .about-container .history .img-container {
+    width: 100%; 
+  }
+
+  #mout {
+    margin-top: 10%;
+    margin-bottom: 5%;
+  }
+
+  //seccion con fondo
+
+  .background-section{
+    padding: 2% 25%;
+    width: 40%;
+    margin-left: 5%;
+  }
+
+  .data-store{
     padding-top: 0;
     padding-bottom: 0;
   }
 
-  .fondo-blanco{
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  .fondo-blanco h4{
+  .data-store h4{
     margin-top: 40%;
     margin-bottom: 0;
   }
 
-  .about-container .elemento-sinfondo h2 {
+  .about-container .background-section h2 {
     margin: 10% 0;
     font-size: 40px;
     padding: 0;
   }
 
+  //Sección datos
+  
+  .list-data{
+    flex-direction: column;
+  }
 }

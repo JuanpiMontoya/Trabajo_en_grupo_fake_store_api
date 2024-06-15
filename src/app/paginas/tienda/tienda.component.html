@@ -1,13 +1,17 @@
-<div class="search-n-filter">
+<!-- seccion búsqueda y filtrado -->
+<section class="search-n-filter">
   <form class="example-form">
     <mat-form-field class="example-full-width">
-      <mat-label>Busca productos</mat-label>
+      <mat-label>¿Que productos buscas?</mat-label>
+      <!-- input de búsqueda -->
       <input matInput
-             aria-label="Buscar"
-             [matAutocomplete]="auto"
-             [formControl]="mycontrol">
+        aria-label="Buscar"
+        [matAutocomplete]="auto"
+        [formControl]="mycontrol">
+      <!-- autocompletado -->
       <mat-autocomplete #auto="matAutocomplete">
         @for (prod of productosFiltrados | async; track prod) {
+          <!-- detalles del producto del autocompletado -->
           <a [routerLink]="['/detalles', prod.id]">
             <mat-option [value]="prod.title">
               <img alt="" class="example-option-img" [src]="prod.image" height="25">
@@ -19,22 +23,21 @@
       </mat-autocomplete>
     </mat-form-field>
   </form>
-  
+  <!-- Selección de categorias -->
   <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Category selection">
     @for (cat of categorias; track cat) {
       <mat-chip-option [selected]="categoriaSeleccionada === cat" (click)="cargarProductosPorCategoria(cat)">{{cat}}</mat-chip-option>
     }
   </mat-chip-listbox>
-</div>
-
-
-<div class="contenedor-productos">
+</section>
+<!-- productos de la tienda -->
+<div class="container-products">
     @for ( producto of listaDeProductos; track producto.id){
+      <!-- div del producto -->
       <div>
         <app-producto [product]="producto" ></app-producto>
       </div>
     } @empty {
       <p>No existen productos</p>
     }
-</div>
-   
+</div>  

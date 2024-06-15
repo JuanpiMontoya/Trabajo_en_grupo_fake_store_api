@@ -1,3 +1,4 @@
+// seccion contenedor producto
 .container-product, img, button{
   border-radius: 10px;
 }
@@ -9,14 +10,14 @@
   border: 1px solid #343434;
   box-sizing: border-box;
   
-
-  .container-img {
-    height: 150px; 
-  }
-
   h2 {
     font-weight: 600;
     font-size: 20px; 
+  }
+
+  // imagen
+  .container-img {
+    height: 200px; 
   }
 
   img {
@@ -26,6 +27,8 @@
     display: block;
   }
 }
+
+// div categoría
 
 .category{
   width: 30%;
@@ -41,21 +44,12 @@
   margin: 0;
 }
 
+// seccion del fondo (precio y botón)
+
 .bottom-product{
   margin-top: 10%;
   display: flex;
-  gap: 25%;
-}
-
-.price p{
-    font-size: 12px;
-    color: #999999;
-    margin: 0; 
-    margin-bottom: 10%;  
-}
-
-.price span{
-  font-weight: 600;
+  gap: 40%;
 }
 
 .bottom-product a {
@@ -63,20 +57,36 @@
   margin: 0 2.5%;
 }
 
+
+.price p{
+  font-size: 12px;
+  color: #999999;
+  margin: 0; 
+  margin-bottom: 10%;  
+}
+
+.price span{
+  font-weight: 600;
+}
+
 button {
-  margin: 5% 1.5%;
-  color: white;
+  margin-left: 5%;
   background-color: #4c7ec1;
-  border: none;
   padding: 4% 10%; 
   font-size: 18px;
 }
 
 @media (max-width: 480px) {
+
+  // seccion contenedor producto
+
   .container-product{
     margin-bottom: 5%;
     padding: 5%; 
     padding-bottom: 0%;
+
+    // imagen
+
     .container-img {
       height:0%; 
     }
@@ -85,6 +95,12 @@ button {
       height: auto;
       margin: 0;
     }
+  }
+
+  // seccion del fondo (precio y botón)
+
+  .bottom-product{
+    gap: 25%;
   }
 
   .bottom-product a {

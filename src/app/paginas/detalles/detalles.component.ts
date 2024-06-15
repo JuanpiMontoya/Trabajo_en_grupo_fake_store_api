@@ -1,8 +1,8 @@
-import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
-import { ProductService } from '../../product.service';
+import { Component, OnInit, ElementRef } from '@angular/core';
+import { ProductService } from '../../servicios/product.service';
 import { Product } from '../../interfaces/product';
 import { Router, ActivatedRoute,RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
+import { ScrollService } from '../../servicios/scroll.service'; 
 
 
 @Component({
@@ -12,39 +12,31 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './detalles.component.html',
   styleUrl: './detalles.component.scss'
 })
+
 export class DetallesComponent implements OnInit {
-  product: Product | undefined;
+  
+  constructor(private route: ActivatedRoute, private productService: ProductService,private router: Router,private scrollService: ScrollService, private elementRef: ElementRef){ }
+
   loggedIn: boolean = false;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService,private router: Router,private elementRef: ElementRef){ }
+  //Cargamos los datos del producto y verificamos el inicio de sesión
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
     this.cargarProducto(id);
-    const loggedIn = sessionStorage.getItem('loggedIn');
-    if (loggedIn === 'true') {
+    const logged = sessionStorage.getItem('loggedIn');
+    if (logged === 'true') {
       this.loggedIn = true;
-    } else {
-      this.loggedIn = false;
     }
   }
 
+  //Insertamos el servicio scroll 
+
   ngAfterViewInit(): void {
-    // Seleccionar el primer div por defecto
-    const firstAdvantage = document.getElementById('first-advantage');
-    if (firstAdvantage) {
-      firstAdvantage.classList.add('clicked');
-    }
-    const url = window.location.href;
-    const hashIndex = url.indexOf('#');
-    if (hashIndex !== -1) {
-      const id = url.substring(hashIndex + 1);
-      const element = this.elementRef.nativeElement.querySelector(`#${id}`);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+    this.scrollService.applyScroll(this.elementRef);
   }
+  
+  product: Product | undefined;
   
   async cargarProducto(id: number) {
     try {
@@ -54,7 +46,10 @@ export class DetallesComponent implements OnInit {
     }
   }
 
+  //Función para añadir al carrito
+
   addToCart(): void {
+    console.log("valor Logged In" + this.loggedIn)
     if (this.loggedIn && this.product) {
       const productId = this.product.id;
       let cart = JSON.parse(localStorage.getItem('cart') || '{}');

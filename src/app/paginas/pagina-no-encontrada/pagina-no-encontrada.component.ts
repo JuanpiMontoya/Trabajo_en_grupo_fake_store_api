@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, ElementRef } from '@angular/core';
+import { ScrollService } from '../../servicios/scroll.service'; 
 
 @Component({
   selector: 'app-pagina-no-encontrada',
@@ -9,17 +10,11 @@ import { Component, AfterViewInit, ElementRef } from '@angular/core';
 })
 
 export class PaginaNoEncontradaComponent implements AfterViewInit {
-  constructor(private elementRef: ElementRef) { }
+  constructor(private scrollService: ScrollService, private elementRef: ElementRef) {}
 
+  //Insertamos el servicio scroll 
+  
   ngAfterViewInit(): void {
-    const url = window.location.href;
-    const hashIndex = url.indexOf('#');
-    if (hashIndex !== -1) {
-      const id = url.substring(hashIndex + 1);
-      const element = this.elementRef.nativeElement.querySelector(`#${id}`);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+    this.scrollService.applyScroll(this.elementRef);
   }
 }

@@ -1,4 +1,6 @@
+<!-- Sección detalles -->
 <section class="detail">
+    <!-- Sección encabezado-->
     <header class="header-detail">
         <div class="go-back">
             <a [routerLink]="'/tienda'" [routerLinkActive]="['active']">
@@ -6,10 +8,13 @@
             </a>
         </div>
     </header>
+    <!-- Sección contenido -->
     <div class="container-detail">
+        <!-- imagen producto -->
         <div class="img">
             <img src="{{product?.image}}" alt="">
         </div>
+        <!-- descripcion detallada del producto -->
         <div class="description">
             <h2>{{product?.title}}</h2>
             <div class="category">
@@ -17,13 +22,14 @@
             </div>
             <p><strong>{{product?.rating?.rate}}/5 <img src="../../../assets/media/—Pngtree—gold-star-like-metal.png" alt="Estrellas Producto" id="star-icon"></strong></p>
             <p>{{product?.description}}</p>
+            <!-- seccion precio y compra -->
             <div class="bottom-detail">
                 <div class="price">
-                <p>Precio</p>
-                <span>$ {{product?.price}}</span>
+                    <p>Precio</p>
+                    <span>$ {{product?.price}}</span>
                 </div>
                 <button mat-flat-button (click)="addToCart()">Añadir al carrito</button>
-                </div>
+            </div>
         </div>
     </div> 
 </section>

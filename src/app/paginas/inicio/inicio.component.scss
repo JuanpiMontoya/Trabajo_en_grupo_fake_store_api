@@ -1,14 +1,12 @@
-
 // Seccion Presentacion
 
 p{
     font-size: 20px;
-    color: #999999;
 }
 
 .presentation-container {
     text-align: center;
-    background-image: url('../../../assets/media/inicio-background.png');
+    background-image: url('../../../assets/media/inicio/inicio-background.png');
     background-size: cover; 
     background-position: center;
     padding: 10% 0; 
@@ -31,31 +29,22 @@ p{
     justify-content: center;
     margin-top: 2%;
 }
+// Configuracion Botones
 
-.presentation-buttons button {
-    background-color: #343434;
+button{
     padding: 1% 2%;
     margin: 0 1%;
-    transition: background-color 0.3s, color 0.3s;
     font-size: 16px;
     border-radius: 10px;
+    font-family: 'Urbanist' , sans-serif;
 }
 
-.presentation-buttons button a{
-    color: white;
-    text-decoration: none;
-    
-}
 
-.presentation-buttons button:hover {
-    background-color: #555;    
-}
-
-.presentation-buttons .color-button {
+.presentation-buttons .color-button,.auth-buttons .color-button {
     background-color: #4c7ec1;
 }
 
-.presentation-buttons .color-button:hover {
+.color-button:hover {
     background-color: #6a9ee2;
 }
 
@@ -129,16 +118,14 @@ p{
     max-width: 80%;
 }
 
-
-/* Configuracion email*/
+// Seccion Login
 
 .main-login-container {
-    background-image: url('../../../assets/media/mail-background.png');
+    background-image: url('../../../assets/media/inicio/mail-background.png');
     padding: 2%;
     margin: 5% 15%;
     border-radius: 10px;
     background-size: cover; 
-    background-position: center;
 }
 
 .login-container {
@@ -158,43 +145,15 @@ p{
     font-size: 18px;
 }
 
-.login-form {
-    display: flex;
-}
-
-.login-form div{
-    max-width: 40%;
-}
-
-.login-form input {
-    width: 100%;
-    padding: 5%;
-    margin-top: 7.5%;
-    border: 1px solid #343434;
-    border-radius: 5px;
-    background-color: #201c1c; 
-    color: white;
-    font-size: 16px;
-}
-
-.login-form button {
-    padding: 2%;
-    border: none;
-    border-radius: 5px;
-    background-color: #4c7ec1;
-    color: white;
-    font-size: 16px;
-    height: 25%;
-    margin: auto 0;
-    margin-left: 7.5%;
-}
-
-
-.login-form button:hover {
-    background-color: #6a9ee2;
+.login-content .color-button{
+    margin-left: 15%;
+    margin-right: 10%;
 }
 
 @media (max-width: 480px) {
+
+    // Seccion Presentacion
+
     .presentation-container h1 {
         font-size: 40px;
     }
@@ -203,6 +162,8 @@ p{
         font-size: 14px;
         padding: 2% 4%;
     }
+
+    // Seccion Ventajas
 
     .advantages {
         flex-direction: column;
@@ -218,6 +179,12 @@ p{
         }
     }
 
+    .options{
+        padding: 5%;
+    }
+    
+    // Seccion Login
+
     .main-login-container {
         margin: 5% 5%;
 
@@ -226,15 +193,19 @@ p{
         }
 
         .login-content h3 {
-            font-size: 14px;
+            font-size: 18px;
         }
 
         .login-content p {
             font-size: 16px;
         }
-    }
 
-    .options{
-        padding: 5%;
+        .auth-buttons{
+            display: flex;
+        }
+        
+        .auth-buttons button{
+            padding: 10% 0%;
+        }
     }
 }

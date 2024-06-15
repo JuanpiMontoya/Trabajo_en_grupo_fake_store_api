@@ -1,12 +1,16 @@
+<!-- seccion contenedor producto -->
 <section class="container-product">
+  <!-- imagen producto -->
   <div class="container-img">
     <img src="{{product.image}}" alt="">
   </div>
+  <!-- nombre y categoría -->
   <h2 class="title">{{product.title}}</h2>
   <div class="category">
     <p>{{product.category}}</p>
   </div>
-  <div class="bottom-product">
+  <!-- precio y detalles -->
+  <section class="bottom-product">
     <div class="price">
       <p>Precio</p>
       <span>$ {{product.price}}</span>
@@ -14,5 +18,5 @@
     <a [routerLink]="['/detalles', product.id]">
       <button mat-flat-button>Ver Detalles</button>
     </a>
-  </div>
+  </section>
 </section>

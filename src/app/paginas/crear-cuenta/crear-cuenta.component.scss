@@ -1,75 +1,88 @@
-/* Estilos para el formulario de creación de cuenta */
+
+// Sección creacion de cuenta
 form {
   display: flex;
   flex-direction: column;
-  gap: 20px;  /* Aumentar el espacio entre los elementos del formulario */
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
   background-color: #1c1c1c;
-  border-radius: 10px;
   border: 1px solid #343434;
-  color: white;
+  gap: 20px;  
+  max-width: 50%;
+  margin: 10% auto;
+  padding: 1.5% 3%;
+  border-radius: 10px;
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 30px;  /* Aumentar el margen inferior del título */
 }
 
 label {
   font-size: 18px;
-  margin-bottom: 5px;  /* Espacio entre la etiqueta y la caja de texto */
-  display: block;  /* Asegurarse de que las etiquetas ocupen toda la línea */
+  margin-bottom: 3%;  
+  display: block;  
 }
 
+// Estilo inputs
+
 input[type="text"], input[type="email"], input[type="password"] {
-  padding: 10px;
+  background-color: #2c2c2c;
   font-size: 16px;
   border: 1px solid #343434;
   border-radius: 5px;
-  background-color: #2c2c2c;
+  padding: 2% 3%;
   color: white;
-  width: 300px;  /* Establecer un ancho fijo para los inputs */
-  margin: 0 auto;  /* Centrar los inputs */
+  width: 70%; 
+  margin: 0 auto; 
+  margin-top: 1%;
 }
 
+// Estilo botones
+
 button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #007bff;
-  color: white;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;  /* Aumentar el margen superior del botón */
-  width: 300px;  /* Asegurar que el botón ocupe el mismo ancho que los inputs */
-  margin: 0;  
+  padding: 2%;
+  background-color: #4c7ec1;
+  width: 75%;  
+  margin: 0 auto; 
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #6a9ee2;
+}
+
+// div términos y condiciones
+
+div:nth-child(9){
+  display: flex;
+  margin-bottom: 3%;
+}
+
+div:nth-child(9) label{
+  margin: 0;
+  margin-left: 2%;
 }
 
 @media (max-width: 768px) {
-  form {
-    padding: 15px;
-  }
 
   button, input[type="text"], input[type="email"], input[type="password"] {
-    width: 100%;
-    margin-left: 0; /* Restablece la alineación para pantallas pequeñas */
+    width: 80%;
   }
+
 }
 
 @media (max-width: 480px) {
-  form {
-    padding: 10px;
+  form { 
+    max-width: 75%;
+  }
+
+  label{
+    font-size: 16px;
   }
 
   input, button {
     font-size: 14px;
+  }
+  button{
+    margin-bottom: 5%;
   }
 }
 

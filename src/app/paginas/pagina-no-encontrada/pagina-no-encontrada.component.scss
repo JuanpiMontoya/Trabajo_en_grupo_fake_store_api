@@ -5,6 +5,15 @@
 h1 {
     margin: 2.5% 0;
     font-size: 2rem;
-    color: white;
     font-style: italic;
+}
+
+@media (max-width: 480px) {
+    .container-not-found img{
+        max-width: 75%;
+    }   
+    
+    h1 {
+        margin: 20% 0;
+    }
 }

@@ -1,51 +1,39 @@
 /* Configuracion de header */
+
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 5px;
-  background: url('../assets/media/header-background.png') center;
+  background: url('../assets/media/header/header-background.png') center;
   background-size: cover; 
   border-bottom: 1px solid  #343434;
 }
 
 .links-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   width: 70%;
 }
 
-h1 {
-  font-size: 48px;
-}
-
-h5 {
-  color: #4c7ec1;
-}
-
-p {
-  font-size: 14px;
-}
-
 a {
-  color: white;
-  text-decoration: none;
   padding-left: 7%;
 }
+
+/* Configuracion del menú de navegación */
 
 .nav {
   background-color: #1c1c1c;
   display: flex;
   flex: 1; 
   justify-content: center; 
-  margin-left: 10%;
+  margin-top: 3%;
+  margin-left: 5%;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px; 
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px; 
   border: 1px solid  #343434;
   padding: 0 5%;
+  height: fit-content;
 }
 
 .nav a {
@@ -54,11 +42,14 @@ a {
   transition: color 0.3s ease;  
 }
 
+/* Configuracion de logos */
+
 .logo-container {
   display: flex;
   flex: 1;
   justify-content: flex-end;
-  margin-right: 5%;
+  margin-right: 7%;
+  margin-top: 3%;
 }
 
 .logo-img {
@@ -69,6 +60,7 @@ a {
   background-color: #1c1c1c;
   border-radius: 10%;
   border: 1px solid #343434;
+  cursor: pointer; 
 }
 
 .logo-img img {
@@ -78,35 +70,39 @@ a {
   margin-top: 10%;
 }
 
+.logo-container .logo-img:nth-child(4){
+  margin-left: 15%;
+}
+
+.logo-container .logo-img:nth-child(4) img{
+  margin-left: 7.5%;
+}
+
+
+/* Configuracion de botones registro e inicio de sesión */
+
 .auth-buttons {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 10px;
+  margin-right: 5%;
 }
 
-.btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  color: white;
+.auth-buttons button {
+  padding: 5% 0;
 }
 
-.btn-primary {
-  background-color: #007bff;
+.auth-buttons .color-button {
+  background-color: #4c7ec1;
 }
 
-.btn-secondary {
-  background-color: #6c757d;
-}
-
-.btn:hover {
-  opacity: 0.8;
+.auth-buttons .color-button:hover {
+  background-color: #6a9ee2;
 }
 
 /* Configuracion de footer */
+
 footer {
   padding: 0 10%;
 }
@@ -121,10 +117,6 @@ footer {
 
 .footer-section {
   padding: 10px;
-}
-
-.footer-section h5 {
-  font-size: 14px;
 }
 
 .footer-section ul {
@@ -171,6 +163,7 @@ footer {
   color: #4c7ec1;
   border-left: 2px solid white;
   font-size: 18px;
+  border-radius: 0%;
 }
 
 .footer-copyright {
@@ -203,14 +196,16 @@ footer {
 }
 
 @media (max-width: 1024px) {
+  
+  /* Configuracion de header */
+
   .nav a {
     padding: 1% 5%;
     font-size: 20px;
   }
 
-  .btn {
-    padding: 8px 15px;
-    font-size: 14px;
+  .auth-buttons a{
+    padding: 0;
   }
 
   .logo-container {
@@ -230,6 +225,8 @@ footer {
 }
 
 @media (max-width: 768px) {
+  /* Configuracion de header */
+
   header {
     flex-direction: column;
     align-items: flex-start;
@@ -258,19 +255,22 @@ footer {
   }
 
   .auth-buttons {
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 10px;
+    flex-direction: row;
+    gap: 10%;
+    margin: 0 auto;
+    margin-top: 3%;
   }
 
-  .btn {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
+  .logo-img img {
+    margin-left: 7.5%;
   }
+
 }
 
 @media (max-width: 480px) {
+
+  /* Configuracion de header */
+
   h1 {
     font-size: 32px;
     margin: 10px 0;
@@ -286,8 +286,10 @@ footer {
   }
 
   .logo-img img {
-    margin-left: 5%;
+    margin-left: 7.5%;
   }
+
+  /* Configuracion del footer */
 
   footer {
     padding: 0 5%;
