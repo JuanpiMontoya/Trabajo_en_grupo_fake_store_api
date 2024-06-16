@@ -1,0 +1,24 @@
+<!-- productos del carrito -->
+<div class="container-cart-products">
+  <h2 class="title-cart">Carrito de compras</h2>
+  <div class="header-cart">
+      <h3>Imagen</h3>
+      <h3>Nombre</h3>
+      <h3>Precio Unitario</h3>
+      <h3>Cantidad</h3>
+      <h3>Total Parcial</h3>
+  </div>
+  @for ( producto_carrito of listaDeProductos_Carrito; track producto_carrito.id){
+    <!-- div del producto -->
+    <div>
+      <app-product-cart [product_cart]="producto_carrito"></app-product-cart>
+    </div>
+  } @empty {
+    <p>No existen productos en el carrito</p>
+  }
+  <!-- Total y botón de compra -->
+  <div class="total-container">
+    <p >Total del carrito: &nbsp; $ {{ getTotal() }}</p>
+    <button mat-flat-button><a href="https://www.paypal.me/YourPayPalMeName/{{ getTotal() }}" target="_blank">Comprar</a></button>
+  </div>
+</div>    

@@ -1,22 +1,22 @@
 //imports de angular
-import { Component, OnInit, AfterViewInit, ElementRef} from '@angular/core';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AsyncPipe, CommonModule } from '@angular/common';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 //imports de angular material
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatChipsModule } from '@angular/material/chips';
 //imports de nuestro sitio
-import {Product} from "../../interfaces/product";
-import {ProductComponent} from "../../elementos/product/product.component";
-import {ProductService } from '../../servicios/product.service';
+import { Product } from "../../interfaces/product";
+import { ProductComponent } from "../../elementos/product/product.component";
+import { ProductService } from '../../servicios/product.service';
 import { ScrollService } from '../../servicios/scroll.service'; 
 //otros imports
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 
 

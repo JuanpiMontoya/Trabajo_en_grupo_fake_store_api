@@ -1,0 +1,26 @@
+<!-- seccion contenedor producto -->
+<section class="container-cart-product">
+    <!-- imagen producto -->
+    <div class="container-img">
+      <img [src]="product_cart.image" alt="{{product_cart.title}}">
+    </div>
+    <!-- nombre-->
+    <div class="container-title">
+      <h2 class="title">{{product_cart.title}}</h2>
+    </div>
+    <!-- precio-->
+    <div class="container-price">
+      <p>$ {{product_cart.price}}</p>
+    </div>
+    <!-- cantidad -->
+    <div class="container-quantity">
+      <p>{{product_cart.quantity}}</p>
+      <button mat-flat-button (click)="incrementarCantidad()">
+        Añadir más
+      </button>
+    </div>
+    <!-- total parcial -->
+    <div class="container-partial">
+      <p>$ {{product_cart.price * product_cart.quantity}}</p>
+    </div>
+  </section>

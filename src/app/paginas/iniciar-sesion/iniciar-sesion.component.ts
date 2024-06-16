@@ -1,8 +1,9 @@
-import { Component, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ScrollService } from '../../servicios/scroll.service'; 
+import { AuthService } from '../../servicios/authentication.service';
 
 
 @Component({
@@ -14,11 +15,9 @@ import { ScrollService } from '../../servicios/scroll.service';
 })
 
 export class IniciarSesionComponent {
-  email: string = '';
-  password: string = '';
-  rememberMe: boolean = false;
 
-  constructor(private router: Router,private scrollService: ScrollService, private elementRef: ElementRef) {}
+
+  constructor(private router: Router,private scrollService: ScrollService, private elementRef: ElementRef, private authService: AuthService) {}
 
   //Insertamos el servicio scroll 
   
@@ -28,30 +27,28 @@ export class IniciarSesionComponent {
 
   //Función para verificar el inicio de sesión
   
-  onSubmit() {
-    const usuarioRegistrado = {
-      email: 'usuario@example.com',
-      password: '123456'
-    };
+  email: string = '';
+  password: string = '';
+  rememberMe: boolean = false;
 
-    //Verificamos si el usuario existe e iniciamos sesion
+  onSubmit(): void {
+    // Obtenemos la lista de usuarios
+    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
 
-    if (this.email === usuarioRegistrado.email && this.password === usuarioRegistrado.password) { 
-      alert(`Inicio de sesión exitoso, Bienvenido ${this.email}`);
+    // Verificamos si el usuario existe y si las credenciales son correctas
+    const usuario = usuarios.find((u: any) => u.email === this.email && u.password === this.password);
 
-      sessionStorage.setItem('loggedIn', 'true');
-      
-      localStorage.setItem('usuario', JSON.stringify(usuarioRegistrado));
-      // Limpia los campos del formulario
-      (document.getElementById('email') as HTMLInputElement).value = "";
-      (document.getElementById('password') as HTMLInputElement).value = "";
-      // Navega a la ruta '/inicio'
-      this.router.navigate(['/inicio']);
+    if (usuario) {
+      alert(`Inicio de sesión exitoso, Bienvenido ${usuario.fullName}`);
+      this.authService.setLoggedIn(true);
+
+      this.router.navigate(['/inicio'], { queryParams: { reload: 'true' } });
     } else {
-      alert('Error en el inicio de sesión, credenciales incorrectas');
+      alert('Error en el inicio de sesión, credenciales incorrectas o la cuenta no existe');
     }
+
+    // Limpiar los campos del formulario
+    this.email = '';
+    this.password = '';
   }
 }
-
-
-

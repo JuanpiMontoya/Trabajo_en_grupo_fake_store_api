@@ -2,6 +2,7 @@ import { Component,ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ScrollService } from '../../servicios/scroll.service'; 
+import { User } from '../../interfaces/user'; 
 
 
 @Component({
@@ -22,45 +23,46 @@ export class CrearCuentaComponent {
     this.scrollService.applyScroll(this.elementRef);
   }
 
-  // Creación de nueva cuenta
+  usuario: User = {  
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    country: '',
+    city: '',
+    address: ''
+  };
 
-  //Datos vacios
-  fullName: string = '';
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
-  country: string = '';
-  city: string = '';
-  address: string = '';
   terms: boolean = false;
 
-  onSubmit() {
-    // Verificar contraseñas
-    if (this.password !== this.confirmPassword) {
-      alert('Las contraseñas no coinciden');
-      return;
-    }
-
-    // Verificar términos y condiciones
-    if (!this.terms) {
-      alert('Debe aceptar los términos y condiciones');
-      return;
-    }
-
-    // Verificar términos y condiciones
-
-    const nuevoUsuario = {
-      fullName: this.fullName,
-      email: this.email,
-      password: this.password,
-      country: this.country,
-      city: this.city,
-      address: this.address
-    };
-
-    // Guardamos el usuario en el local storage
-
-    localStorage.setItem('usuario', JSON.stringify(nuevoUsuario));
-    this.router.navigate(['/inicio']);
+onSubmit() {
+    // Verificar si algún campo está vacío
+  if (!this.usuario.fullName || !this.usuario.email || !this.usuario.password || !this.usuario.country || !this.usuario.city || !this.usuario.address) {
+    alert('Todos los campos son obligatorios, llena los datos faltantes');
+    return;
   }
+
+  // Verificar contraseñas
+  if (this.usuario.password !== this.usuario.confirmPassword) {
+    alert('Las contraseñas no coinciden');
+    return;
+  }
+
+  // Verificar términos y condiciones
+  if (!this.terms) {
+    alert('Debe aceptar los términos y condiciones');
+    return;
+  }
+
+  // Obtenemos la lista de usuarios, o inicializamos una lista vacía si no existen usuarios
+  let usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]') as User[];
+  
+  // Añadir el nuevo usuario a la lista
+  usuarios.push(this.usuario);
+  
+  // Guardar la lista actualizada de usuarios en el localStorage
+  localStorage.setItem('usuarios', JSON.stringify(usuarios));
+  alert('¡Cuenta Creada!');
+  this.router.navigate(['/inicio']);
+}
 }

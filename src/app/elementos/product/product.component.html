@@ -2,21 +2,21 @@
 <section class="container-product">
   <!-- imagen producto -->
   <div class="container-img">
-    <img src="{{product.image}}" alt="">
+      <img src="{{product.image}}" alt="">
   </div>
   <!-- nombre y categoría -->
   <h2 class="title">{{product.title}}</h2>
   <div class="category">
-    <p>{{product.category}}</p>
+      <p>{{product.category}}</p>
   </div>
   <!-- precio y detalles -->
   <section class="bottom-product">
-    <div class="price">
-      <p>Precio</p>
-      <span>$ {{product.price}}</span>
-    </div>
-    <a [routerLink]="['/detalles', product.id]">
-      <button mat-flat-button>Ver Detalles</button>
-    </a>
+      <div class="price">
+          <p>Precio</p>
+          <span>$ {{product.price}}</span>
+      </div>
+      <a [routerLink]="['/detalles', product.id]">
+          <button mat-flat-button>Ver Detalles</button>
+      </a>
   </section>
 </section>

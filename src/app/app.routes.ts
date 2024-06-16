@@ -8,6 +8,7 @@ import { PaginaNoEncontradaComponent } from './paginas/pagina-no-encontrada/pagi
 import { DetallesComponent } from './paginas/detalles/detalles.component'; // Componente detalles
 import { IniciarSesionComponent } from './paginas/iniciar-sesion/iniciar-sesion.component'; // Componente Iniciar sesion
 import { CrearCuentaComponent } from './paginas/crear-cuenta/crear-cuenta.component'; // Componente Crear cuenta
+import { CarritoComponent } from './paginas/carrito/carrito.component'; //
 
 export const routes: Routes = [
     { path: 'inicio', component: InicioComponent },
@@ -15,6 +16,7 @@ export const routes: Routes = [
     { path: 'nosotros', component: NosotrosComponent },
     { path: 'iniciar-sesion', component: IniciarSesionComponent },
     { path: 'crear-cuenta', component: CrearCuentaComponent },
+    { path: 'carrito', component: CarritoComponent },
     { path: '', redirectTo: 'inicio', pathMatch: 'full' },
     { path: 'detalles/:id', component: DetallesComponent },
     { path: '**', component: PaginaNoEncontradaComponent },
