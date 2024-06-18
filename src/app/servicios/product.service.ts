@@ -5,7 +5,7 @@ import { Product } from '../interfaces/product';
   providedIn: 'root'
 })
 export class ProductService {
-  apiurl = 'https://fakestoreapi.com/products/';
+  apiurl = 'http://localhost:3000/products';
 
   constructor() { }
 

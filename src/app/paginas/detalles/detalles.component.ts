@@ -32,7 +32,7 @@ export class DetallesComponent implements OnInit {
   //Cargamos los datos del producto y verificamos el inicio de sesión
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params['id'];
+    const id = Number(this.route.snapshot.params['id']);
     this.cargarProducto(id);
     this.loggedIn = this.authService.isLoggedIn();
   }
