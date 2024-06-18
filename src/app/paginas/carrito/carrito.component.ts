@@ -33,7 +33,7 @@ export class CarritoComponent implements OnInit {
     this.scrollService.applyScroll(this.elementRef);
   }
 
-  trackById(index: number, producto: Product): number {
+  trackById(index: number, producto: Product): string {
     return producto.id;
   }
 

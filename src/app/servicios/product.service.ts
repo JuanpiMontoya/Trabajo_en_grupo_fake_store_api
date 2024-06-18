@@ -1,44 +1,29 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  apiurl = 'https://fakestoreapi.com/products/';
+  apiurl = 'http://localhost:3000/products';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  async fetchProducts(): Promise<Product[]>{
-    const resp = await fetch(this.apiurl);
-    const products = await resp.json();
-    return products;
+  fetchProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiurl);
   }
 
-  async fetchProductById(id: number): Promise<Product> {
-    const resp = await fetch(`${this.apiurl}${id}`);
-    if (!resp.ok) {
-      throw new Error('Product not found');
-    }
-    const product = await resp.json();
-    return product;
+  fetchProductById(id: string): Observable<Product> {
+    return this.http.get<Product>(`${this.apiurl}/${id}`);
   }
 
-  async fetchProductByCategory(category: string): Promise<Product[]>{
-    const resp = await fetch(`${this.apiurl}/category/${category}`);
-    if(!resp.ok){
-      throw new Error('Category not found');
-    }
-    const products = await resp.json();
-    return products;
+  fetchProductByCategory(category: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiurl}/category/${category}`);
   }
 
-  async fetchCategories(): Promise<string[]> {
-    const resp = await fetch(`${this.apiurl}/categories`);
-    if (!resp.ok) {
-      throw new Error('Failed to fetch categories');
-    }
-    const categories = await resp.json();
-    return categories;
+  fetchCategories(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiurl}/categories`);
   }
 }

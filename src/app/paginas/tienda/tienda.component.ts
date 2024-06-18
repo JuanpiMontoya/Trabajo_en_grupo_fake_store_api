@@ -17,6 +17,8 @@ import { ScrollService } from '../../servicios/scroll.service';
 //otros imports
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -31,7 +33,8 @@ import { map, startWith } from 'rxjs/operators';
   MatSlideToggleModule,
   AsyncPipe,
   RouterLink,
-  MatChipsModule
+  MatChipsModule,
+  HttpClientModule
   ],
   providers: [ProductService],
   templateUrl: './tienda.component.html',
@@ -68,25 +71,31 @@ export class TiendaComponent implements OnInit, AfterViewInit{
     this.cargarCategorias();
   }
 
-  async cargarProductos(){
-    this.listaDeProductos = await this.productService.fetchProducts();
+  cargarProductos() {
+    this.productService.fetchProducts().subscribe((productos) => {
+      this.listaDeProductos = productos;
+    });
   }
 
-  async cargarCategorias() {
-    this.categorias = await this.productService.fetchCategories();
+  cargarCategorias() {
+    this.productService.fetchCategories().subscribe((categorias) => {
+      this.categorias = categorias;
+    });
   }
 
-  async cargarProductosPorCategoria(category: string) {
+  cargarProductosPorCategoria(category: string) {
     if (this.categoriaSeleccionada === category) {
-      // Si se vuelve a clickear el chip de la categoria se vuelven a mostrar todos los productos
+      // Si se vuelve a clickear el chip de la categoría se muestran todos los productos
       this.categoriaSeleccionada = null;
-      this.listaDeProductos = await this.productService.fetchProducts();
+      this.cargarProductos(); // Recargar todos los productos
     } else {
-      // funcionamiento normal: filtrar al elegir alguna categoría
+      // Filtrar productos por la categoría seleccionada
       this.categoriaSeleccionada = category;
-      this.listaDeProductos = await this.productService.fetchProductByCategory(category);
+      this.productService.fetchProductByCategory(category).subscribe((productos) => {
+        this.listaDeProductos = productos;
+      });
     }
-    this.mycontrol.setValue(''); // Resetear el contenido de la barra de búsqueda cuando se elige una categoría
+    this.mycontrol.setValue(''); // Resetear el contenido de la barra de búsqueda
   }
   
   //Insertamos el servicio scroll 

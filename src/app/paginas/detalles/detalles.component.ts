@@ -28,6 +28,7 @@ export class DetallesComponent implements OnInit {
   ) { }
 
   loggedIn: boolean = false;
+  product: Product | undefined;
 
   //Cargamos los datos del producto y verificamos el inicio de sesión
 
@@ -44,15 +45,13 @@ export class DetallesComponent implements OnInit {
     this.scrollService.applyScroll(this.elementRef);
   }
   
-  product: Product | undefined;
   
-  async cargarProducto(id: number) {
-    try {
-      this.product = await this.productService.fetchProductById(id);
-    } catch (error) {
-      console.error(error);
-    }
+  cargarProducto(id: string) {
+    this.productService.fetchProductById(id).subscribe((product) => {
+      this.product = product;
+    });
   }
+
 
   //Función para añadir al carrito
 

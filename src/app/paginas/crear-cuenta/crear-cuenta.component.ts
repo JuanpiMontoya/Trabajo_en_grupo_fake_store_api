@@ -23,14 +23,15 @@ export class CrearCuentaComponent {
     this.scrollService.applyScroll(this.elementRef);
   }
 
-  usuario: User = {  
+  usuario: User = {
+    id: '',
     fullName: '',
     email: '',
     password: '',
-    confirmPassword: '',
     country: '',
     city: '',
-    address: ''
+    address: '',
+    confirmPassword: ''
   };
 
   terms: boolean = false;
