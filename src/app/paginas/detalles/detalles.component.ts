@@ -5,6 +5,7 @@ import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@ang
 import { ScrollService } from '../../servicios/scroll.service'; 
 import { AuthService } from '../../servicios/authentication.service';
 import { CartService } from '../../servicios/cart.service'; 
+import { User } from '../../interfaces/user';
 
 
 
@@ -20,7 +21,7 @@ export class DetallesComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private ProductService: ProductService,
+    private productService: ProductService,
     private scrollService: ScrollService,
     private elementRef: ElementRef,
     private authService: AuthService,
@@ -28,41 +29,40 @@ export class DetallesComponent implements OnInit {
   ) { }
 
   loggedIn: boolean = false;
+  user: User | null = null; // Variable para almacenar la información del usuario
+
+  // Variable para almacenar el producto actual
+  product: Product | undefined;
 
   //Cargamos los datos del producto y verificamos el inicio de sesión
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     const id = Number(this.route.snapshot.params['id']);
-    this.cargarProducto(id);
+    await this.cargarProducto(id); // Espera a cargar el producto antes de verificar el inicio de sesión
     this.loggedIn = this.authService.isLoggedIn();
+    if (this.loggedIn) {
+      this.user = this.authService.getCurrentUser(); // Obtener el usuario actualmente autenticado
+    }
   }
   
-
-  //Insertamos el servicio scroll 
-
   ngAfterViewInit(): void {
     this.scrollService.applyScroll(this.elementRef);
   }
-  
-  product: Product | undefined;
-  
-  async cargarProducto(id: number) {
+
+  async cargarProducto(id: number): Promise<void> {
     try {
-      this.product = await this.ProductService.fetchProductById(id);
+      this.product = await this.productService.fetchProductById(id);
     } catch (error) {
       console.error(error);
     }
   }
 
-  //Función para añadir al carrito
-
   addToCart(): void {
-    if (this.loggedIn && this.product) {
-      this.cartService.agregarAlCarrito(this.product);
+    if (this.loggedIn && this.product && this.user) {
+      this.cartService.agregarAlCarrito(this.user.idNum, this.product.id); // Envía el ID del usuario
       alert('Producto agregado al carrito.');
     } else {
       alert('Por favor, inicia sesión para agregar productos al carrito.');
     }
   }
-  
 }

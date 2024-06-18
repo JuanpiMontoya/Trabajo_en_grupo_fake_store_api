@@ -5,67 +5,87 @@ import { Product } from "../interfaces/product";
   providedIn: 'root'
 })
 export class CartService {
-  private apiurl = 'http://localhost:3000/carts'; // URL del API backend
+  private apiUrl = 'http://localhost:3000/carts';
 
   constructor() {}
 
-  async agregarAlCarrito(producto: Product) {
-    try {
-      const productoExistente = await this.buscarProductoEnCarrito(producto.id);
-      if (productoExistente) {
-        productoExistente.quantity = (productoExistente.quantity || 0) + (producto.quantity || 1);
-        await this.actualizarProductoEnCarrito(productoExistente);
-      } else {
-        const response = await fetch(this.apiurl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ ...producto, quantity: producto.quantity || 1 })
-        });
-
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(`Failed to add product to cart: ${errorText}`);
-        }
-      }
-    } catch (error) {
-      console.error('Error adding product to cart:', error);
+  async agregarAlCarrito(userId: number, productId: number) {
+    const productoExistente = await this.buscarProductoEnCarrito(userId, productId);
+    if (productoExistente) {
+      productoExistente.quantity = (productoExistente.quantity || 0) + 1;
+      await this.actualizarProductoEnCarrito(productoExistente);
+    } else {
+      // Ejemplo: Si la API espera un objeto con userId y productId
+      await fetch(`${this.apiUrl}/add`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userId, productId, quantity: 1 })
+      });
     }
   }
 
-
   async vaciarCarrito() {
-    await fetch(this.apiurl, {
-      method: 'DELETE'
-    });
+    try {
+      await fetch(`${this.apiUrl}`, {
+        method: 'DELETE'
+      });
+    } catch (error) {
+      console.error('Error clearing cart:', error);
+      throw error;
+    }
   }
 
   async getProductos(): Promise<Product[]> {
-    const resp = await fetch(this.apiurl);
-    if (!resp.ok) {
-      throw new Error('Failed to fetch cart products');
+    try {
+      const resp = await fetch(`${this.apiUrl}`);
+      if (!resp.ok) {
+        throw new Error('Failed to fetch cart products');
+      }
+      return await resp.json();
+    } catch (error) {
+      console.error('Error fetching cart products:', error);
+      throw error;
     }
-    return await resp.json();
   }
 
   async getTotal(): Promise<number> {
-    const productos = await this.getProductos();
-    return productos.reduce((total, producto) => total + (producto.price * (producto.quantity || 1)), 0);
+    try {
+      const productos = await this.getProductos();
+      return productos.reduce((total, producto) => total + (producto.price * (producto.quantity || 1)), 0);
+    } catch (error) {
+      console.error('Error calculating cart total:', error);
+      throw error;
+    }
   }
 
   async actualizarProductoEnCarrito(producto: Product) {
-    await fetch(`${this.apiurl}/${producto.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(producto)
-    });
+    try {
+      await fetch(`${this.apiUrl}/${producto.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(producto)
+      });
+    } catch (error) {
+      console.error('Error updating product in cart:', error);
+      throw error;
+    }
   }
 
-  private async buscarProductoEnCarrito(id: number): Promise<Product | undefined> {
-    const productos = await this.getProductos();
-    return productos.find(p => p.id === id);
+  async buscarProductoEnCarrito(userId: number, productId: number): Promise<Product | null> {
+    try {
+      const resp = await fetch(`${this.apiUrl}/search?userId=${userId}&productId=${productId}`);
+      if (!resp.ok) {
+        throw new Error('Failed to fetch product from cart');
+      }
+      const producto = await resp.json();
+      return producto;
+    } catch (error) {
+      console.error('Error searching product in cart:', error);
+      throw error;
+    }
   }
 }

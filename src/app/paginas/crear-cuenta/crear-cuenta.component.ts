@@ -30,6 +30,7 @@ export class CrearCuentaComponent {
   }
 
   usuario: User = {
+    idNum: 0,
     fullName: '',
     email: '',
     password: '',
@@ -59,8 +60,8 @@ export class CrearCuentaComponent {
         return;
       }
 
-      await this.userService.createUser(this.usuario);
-      alert('¡Cuenta Creada!');
+      const createdUser = await this.userService.createUser(this.usuario);
+      alert('¡Cuenta Creada! ID del usuario: ' + createdUser.idNum);
       this.router.navigate(['/inicio']);
     } catch (error) {
       console.error('Error creando cuenta:', error);
