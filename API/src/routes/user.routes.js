@@ -1,14 +1,14 @@
 // src/routes/user.routes.js
 import express from 'express';
-import { getAllUsers, getUserById, createUser, updateUser, deleteUser } from '../controllers/user.controller.js';
+import { getUsers, getUserById, registerUser, updateUser, deleteUser } from '../controllers/user.controller.js';
 
 const router = express.Router();
 
 // Rutas para operaciones CRUD de usuarios
-router.get('/users', getAllUsers);
-router.get('/users/:id', getUserById);
-router.post('/users', createUser);
-router.put('/users/:id', updateUser);
-router.delete('/users/:id', deleteUser);
+router.get('/', getUsers);
+router.get('/:idNum', getUserById);
+router.post('/register', registerUser);
+router.put('/update/:idNum', updateUser);
+router.delete('/delete/:idNum', deleteUser);
 
 export default router;

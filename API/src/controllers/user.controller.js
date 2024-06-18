@@ -2,7 +2,7 @@
 import User from '../models/user.model.js';
 
 // Obtener todos los usuarios
-export const getAllUsers = async (req, res) => {
+export const getUsers = async (req, res) => {
     try {
         const users = await User.find();
         res.status(200).json(users);
@@ -14,8 +14,8 @@ export const getAllUsers = async (req, res) => {
 // Obtener usuario por ID
 export const getUserById = async (req, res) => {
     try {
-        const userId = req.params.id;
-        const user = await User.findOne({ id: userId });
+        const userId = req.params.idNum;
+        const user = await User.findOne({ idNum: userId });
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
@@ -26,21 +26,35 @@ export const getUserById = async (req, res) => {
 };
 
 // Crear un nuevo usuario
-export const createUser = async (req, res) => {
+//const { fullName, email, password, country, city, address } = req.body;
+export const registerUser = async (req, res) => {
     try {
-        const newUser = new User(req.body);
+        // Encuentra el usuario con el mayor idNum
+        const lastUser = await User.findOne().sort({ idNum: -1 }).exec();
+    
+        // Incrementa el idNum
+        const newIdNum = lastUser ? lastUser.idNum + 1 : 1;
+    
+        // Crear un nuevo usuario con el idNum incrementado
+        const newUser = new User({
+          ...req.body, //sintaxis de propagación 
+          idNum: newIdNum
+        });
+    
+        // Guardar el nuevo usuario en la base de datos
         await newUser.save();
+    
         res.status(201).json(newUser);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
+      } catch (error) {
+        res.status(500).json({ message: error.message });
+      }
 };
 
 // Actualizar usuario
 export const updateUser = async (req, res) => {
     try {
-        const userId = req.params.id;
-        const updatedUser = await User.findOneAndUpdate({ id: userId }, req.body, { new: true });
+        const userId = req.params.idNum;
+        const updatedUser = await User.findOneAndUpdate({ idNum: userId }, req.body, { new: true });
         if (!updatedUser) {
             return res.status(404).json({ message: 'User not found' });
         }
@@ -53,8 +67,8 @@ export const updateUser = async (req, res) => {
 // Eliminar usuario
 export const deleteUser = async (req, res) => {
     try {
-        const userId = req.params.id;
-        const deletedUser = await User.findOneAndDelete({ id: userId });
+        const userId = req.params.idNum;
+        const deletedUser = await User.findOneAndDelete({ idNum: userId });
         if (!deletedUser) {
             return res.status(404).json({ message: 'User not found' });
         }
