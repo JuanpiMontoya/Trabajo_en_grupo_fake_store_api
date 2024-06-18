@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../interfaces/user'; // Asegúrate de importar correctamente la interfaz de usuario si la tienes
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -33,12 +33,5 @@ export class AuthService {
 
   getCurrentUser(): User | null {
     return this.currentUser;
-  }
-
-  getUserId(): number | null {
-    if (this.currentUser) {
-      return this.currentUser.idNum; // Asumiendo que el usuario tiene una propiedad 'id' numérica
-    }
-    return null;
   }
 }

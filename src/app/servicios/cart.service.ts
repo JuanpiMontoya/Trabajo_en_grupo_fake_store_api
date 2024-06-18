@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from "../interfaces/product";
+import { Product } from '../interfaces/product';
 
 @Injectable({
   providedIn: 'root'
@@ -9,23 +9,29 @@ export class CartService {
 
   constructor() {}
 
-  async agregarAlCarrito(userId: number, productId: number) {
-    const productoExistente = await this.buscarProductoEnCarrito(userId, productId);
-    if (productoExistente) {
-      productoExistente.quantity = (productoExistente.quantity || 0) + 1;
-      await this.actualizarProductoEnCarrito(productoExistente);
-    } else {
-      // Ejemplo: Si la API espera un objeto con userId y productId
-      await fetch(`${this.apiUrl}/add`, {
+  async agregarAlCarrito(userId: number, productId: number): Promise<void> {
+    try {
+      const response = await fetch(`${this.apiUrl}/add`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ userId, productId, quantity: 1 })
+        body: JSON.stringify({ user_Id: userId, product_Id: productId, quantity: 1 })
       });
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Failed to add product to cart: ${errorMessage}`);
+      }
+
+      const result = await response.json();
+      console.log('Producto agregado al carrito:', result);
+    } catch (error) {
+      console.error('Error al agregar producto al carrito:', error);
+      alert('Ocurrió un error al agregar el producto al carrito. Inténtelo de nuevo más tarde.');
     }
   }
-
+  
   async vaciarCarrito() {
     try {
       await fetch(`${this.apiUrl}`, {

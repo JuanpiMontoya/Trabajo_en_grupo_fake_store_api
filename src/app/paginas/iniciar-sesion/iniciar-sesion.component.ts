@@ -46,7 +46,7 @@ export class IniciarSesionComponent {
 
       if (usuario) {
         alert(`Inicio de sesión exitoso, Bienvenido ${usuario.fullName}`);
-        this.authService.setLoggedIn(true);
+        this.authService.setLoggedIn(true,usuario);
 
         this.router.navigate(['/inicio'], { queryParams: { reload: 'true' } });
       } else {

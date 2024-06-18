@@ -23,16 +23,16 @@ export class ProductCartComponent {
     }
 
     // Ejemplo: Obtener el userId desde el servicio de autenticación
-    const userId = this.authService.getUserId(); // Asume que tienes un método para obtener el userId
+    const user = this.authService.getCurrentUser(); // Asume que tienes un método para obtener el userId
 
     // Verificar que userId no sea null o undefined
-    if (!userId) {
+    if (!user?.idNum) {
       console.error('Error: Usuario no autenticado');
       return;
     }
 
     // Llamar al servicio para agregar al carrito
-    this.cartService.agregarAlCarrito(userId, this.product_cart.id);
+    this.cartService.agregarAlCarrito(user.idNum, this.product_cart.id);
   }
 
   incrementarCantidad() {

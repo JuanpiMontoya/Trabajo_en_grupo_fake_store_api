@@ -1,6 +1,6 @@
 import Cart from '../models/cart.model.js';
-import { getAllProducts, getProductById, getProductsByCategory, getCategories } from '../controllers/product.controller.js';
-import { getUsers, getUserById, registerUser, updateUser, deleteUser } from '../controllers/user.controller.js';
+import { getUserById } from '../controllers/user.controller.js'; // Asegúrate de importar correctamente las funciones del controlador de usuarios
+import { getProductById } from '../controllers/product.controller.js'; 
 
 
 export const getCarts = async (req, res) => {
@@ -29,46 +29,49 @@ export const getCartByUserId = async (req, res) => {
 };
 
 
-// Agregar producto al carrito
 export const addToCart = async (req, res) => {
     const { user_Id, product_Id, quantity } = req.body;
 
     try {
-        // Obtener usuario por idNum
-        const user = await User.getUserById(user_Id);
+        // Verifica si el usuario existe utilizando la función del controlador de usuarios
+        const user = await getUserById(user_Id);
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Obtener producto por productId
-        const product = await Product.getProductById(product_Id);
+        // Verifica si el producto existe utilizando la función del controlador de productos
+        const product = await getProductById(product_Id);
         if (!product) {
             return res.status(404).json({ message: 'Product not found' });
         }
 
-        let carrito = await Cart.findOne({ user_Id: user_Id });
+        // Crea un nuevo carrito o encuentra el carrito existente por user_Id
+        let carrito = await Cart.findOne({ user_Id });
 
         if (!carrito) {
             carrito = new Cart({
-                user_Id: user_Id,
-                products: [{ product_Id: product_Id, quantity: quantity, partial_cost: product.price * quantity }],
+                user_Id,
+                products: [{ product_Id, quantity, partial_cost: product.price * quantity }],
                 Total_cost: product.price * quantity
             });
         } else {
-            const existingProductIndex = carrito.products.findIndex(p => p.product_Id === productId);
+            // Verifica si el producto ya está en el carrito
+            const existingProductIndex = carrito.products.findIndex(p => p.product_Id === product_Id);
 
             if (existingProductIndex !== -1) {
+                // Actualiza la cantidad y el costo parcial del producto existente en el carrito
                 carrito.products[existingProductIndex].quantity += quantity;
                 carrito.products[existingProductIndex].partial_cost += product.price * quantity;
             } else {
-                // Si el producto no está en el carrito, agregarlo
-                carrito.products.push({ product_Id: product_Id, quantity: quantity, partial_cost: product.price * quantity });
+                // Agrega el producto al carrito si no está presente
+                carrito.products.push({ product_Id, quantity, partial_cost: product.price * quantity });
             }
 
-            // Recalcular el costo total del carrito
+            // Recalcula el costo total del carrito
             carrito.Total_cost = carrito.products.reduce((total, product) => total + product.partial_cost, 0);
         }
 
+        // Guarda el carrito actualizado en la base de datos
         await carrito.save();
         res.status(201).json(carrito);
     } catch (error) {
@@ -81,19 +84,19 @@ export const updateCartItem = async (req, res) => {
     const { user_Id, product_Id, quantity } = req.body;
 
     try {
-        // Obtener usuario por idNum
-        const user = await User.getUserById(user_Id);
+        // Obtener usuario por idNum utilizando la función del controlador de usuarios
+        const user = await getUserById(user_Id);
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Obtener producto por productId
-        const product = await Product.getProductById(product_Id);
+        // Obtener producto por productId (si es necesario)
+        const product = await getProductById(product_Id);
         if (!product) {
             return res.status(404).json({ message: 'Product not found' });
         }
 
-        let carrito = await Cart.findOne({ user_Id: user_Id });
+        let carrito = await Cart.findOne({ user_Id });
 
         if (!carrito) {
             return res.status(404).json({ message: 'Cart not found' });
@@ -121,10 +124,10 @@ export const updateCartItem = async (req, res) => {
 
 // Eliminar carrito por ID de usuario
 export const deleteCartByUserId = async (req, res) => {
-    const user_Id= req.params.user_Id;
+    const user_Id = req.params.user_Id;
 
     try {
-        const deletedCart = await Cart.findOneAndDelete({ user_Id: user_Id });
+        const deletedCart = await Cart.findOneAndDelete({ user_Id });
 
         if (!deletedCart) {
             return res.status(404).json({ message: 'Cart not found' });
