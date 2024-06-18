@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ProductService } from '../../servicios/product.service';
 import { Product } from '../../interfaces/product';
-import { ActivatedRoute,RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ScrollService } from '../../servicios/scroll.service'; 
 import { AuthService } from '../../servicios/authentication.service';
 import { CartService } from '../../servicios/cart.service'; 
@@ -20,7 +20,7 @@ export class DetallesComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService,
+    private ProductService: ProductService,
     private scrollService: ScrollService,
     private elementRef: ElementRef,
     private authService: AuthService,
@@ -48,7 +48,7 @@ export class DetallesComponent implements OnInit {
   
   async cargarProducto(id: number) {
     try {
-      this.product = await this.productService.fetchProductById(id);
+      this.product = await this.ProductService.fetchProductById(id);
     } catch (error) {
       console.error(error);
     }

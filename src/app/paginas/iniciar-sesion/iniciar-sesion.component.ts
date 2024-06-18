@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ScrollService } from '../../servicios/scroll.service'; 
 import { AuthService } from '../../servicios/authentication.service';
+import { UserService } from '../../servicios/user.service';
 
 
 @Component({
@@ -17,7 +18,13 @@ import { AuthService } from '../../servicios/authentication.service';
 export class IniciarSesionComponent {
 
 
-  constructor(private router: Router,private scrollService: ScrollService, private elementRef: ElementRef, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private scrollService: ScrollService,
+    private elementRef: ElementRef,
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
   //Insertamos el servicio scroll 
   
@@ -31,24 +38,26 @@ export class IniciarSesionComponent {
   password: string = '';
   rememberMe: boolean = false;
 
-  onSubmit(): void {
-    // Obtenemos la lista de usuarios
-    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+  async onSubmit(): Promise<void> {
+    try {
+      const usuarios = await this.userService.getUsers(); 
 
-    // Verificamos si el usuario existe y si las credenciales son correctas
-    const usuario = usuarios.find((u: any) => u.email === this.email && u.password === this.password);
+      const usuario = usuarios.find((u: any) => u.email === this.email && u.password === this.password);
 
-    if (usuario) {
-      alert(`Inicio de sesión exitoso, Bienvenido ${usuario.fullName}`);
-      this.authService.setLoggedIn(true);
+      if (usuario) {
+        alert(`Inicio de sesión exitoso, Bienvenido ${usuario.fullName}`);
+        this.authService.setLoggedIn(true);
 
-      this.router.navigate(['/inicio'], { queryParams: { reload: 'true' } });
-    } else {
-      alert('Error en el inicio de sesión, credenciales incorrectas o la cuenta no existe');
+        this.router.navigate(['/inicio'], { queryParams: { reload: 'true' } });
+      } else {
+        alert('Error en el inicio de sesión, credenciales incorrectas o la cuenta no existe');
+      }
+      
+      this.email = '';
+      this.password = '';
+    } catch (error) {
+      console.error('Error al obtener usuarios desde la base de datos:', error);
+      alert('Ocurrió un error al iniciar sesión. Por favor, intenta nuevamente más tarde.');
     }
-
-    // Limpiar los campos del formulario
-    this.email = '';
-    this.password = '';
   }
 }

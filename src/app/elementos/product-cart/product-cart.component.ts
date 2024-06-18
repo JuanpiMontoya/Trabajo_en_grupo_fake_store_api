@@ -21,13 +21,16 @@ export class ProductCartComponent {
     this.cartService.agregarAlCarrito(productoParaAgregar);
   }
 
-  eliminarDelCarrito(index: number) {
-    this.cartService.eliminarDelCarrito(index);
-  }
-
   incrementarCantidad() {
     this.product_cart.quantity++;
     this.actualizarCarrito();
+  }
+
+  async decrementarCantidad() {
+    if (this.product_cart.quantity > 1) {
+      this.product_cart.quantity--;
+      await this.actualizarCarrito();
+    }
   }
 
   actualizarCarrito() {

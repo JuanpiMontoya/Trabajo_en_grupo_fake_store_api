@@ -1,9 +1,9 @@
+
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { CartService } from '../../servicios/cart.service';
 import { Product } from "../../interfaces/product";
 import { ProductCartComponent } from "../../elementos/product-cart/product-cart.component";
-import { ScrollService } from '../../servicios/scroll.service'; 
-
+import { ScrollService } from '../../servicios/scroll.service';
 
 @Component({
   selector: 'app-carrito',
@@ -15,7 +15,7 @@ import { ScrollService } from '../../servicios/scroll.service';
 })
 
 export class CarritoComponent implements OnInit {
-
+  totalCarrito: number = 0;
   listaDeProductos_Carrito: Product[] = []; 
   
   constructor(private cartService: CartService,private scrollService: ScrollService, private elementRef: ElementRef){}
@@ -25,8 +25,20 @@ export class CarritoComponent implements OnInit {
     alert("Si deseas eliminar todos los productos de tu carrito recarga la página")
   }
 
-  cargarProductosCarrito() {
-    this.listaDeProductos_Carrito = this.cartService.getProductos();
+  async cargarProductosCarrito() {
+    try {
+      this.listaDeProductos_Carrito = await this.cartService.getProductos();
+    } catch (error) {
+      console.error('Error al cargar los productos del carrito:', error);
+    }
+  }
+
+  async cargarTotalCarrito() {
+    try {
+      this.totalCarrito = await this.cartService.getTotal();
+    } catch (error) {
+      console.error('Error al cargar el total del carrito:', error);
+    }
   }
 
   ngAfterViewInit(): void {
@@ -38,7 +50,7 @@ export class CarritoComponent implements OnInit {
   }
 
   getTotal(): number {
-    return this.cartService.getTotal();
+    return this.totalCarrito;
   }
   
 }
